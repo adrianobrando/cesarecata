@@ -1,4 +1,5 @@
 import Hero from "@/components/ui/Hero";
+import HomeSections from "@/components/ui/HomeSections";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
         videoUrl="/videos/hero-video_cesare.mp4"
         cta={{ label: "Scopri i prossimi eventi", href: "/calendario" }}
       />
+      <HomeSections />
     </main>
   );
 }

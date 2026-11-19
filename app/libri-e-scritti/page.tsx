@@ -1,6 +1,4 @@
-import Image from "next/image";
-import Button from "@/components/ui/Button";
-import ExpandableText from "@/components/ui/ExpandableText";
+import BooksCarousel from "@/components/ui/BooksCarousel";
 import Hero from "@/components/ui/Hero";
 import { libri } from "@/data/libri";
 
@@ -97,26 +95,8 @@ export default function LibriEScrittiPage() {
   return (
     <main>
       <Hero title="Libri e Scritti" />
-      <section aria-label="Libri e Scritti" className="mx-auto max-w-screen-xl px-5 py-12 sm:px-6 sm:py-16">
-        <ul className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {libriRecenti.map((libro) => (
-            <li key={libro.id} id={libro.id} className="scroll-mt-24">
-              <article className="flex h-full overflow-hidden rounded-2xl border border-light-blue bg-white shadow-sm">
-                <div className="relative aspect-[3/4] w-[38%] shrink-0 bg-light-blue">
-                  <Image src={libro.image} alt="" fill sizes="(min-width: 1024px) 200px, 38vw" className="object-cover" />
-                </div>
-                <div className="flex min-w-0 flex-1 flex-col items-start p-4 sm:p-6">
-                  <h2 className="font-display text-xl font-bold text-dark-blue">{libro.title}</h2>
-                  <p className="mt-2 text-sm font-medium text-slate-600">{libro.editor} · {libro.year}</p>
-                  <div className="mt-3 w-full"><ExpandableText text={libro.description} /></div>
-                  <Button href={libro.href} className="mt-auto px-4 py-3 text-base">
-                    Acquista<span className="sr-only">: {libro.title}</span>
-                  </Button>
-                </div>
-              </article>
-            </li>
-          ))}
-        </ul>
+      <section aria-label="Libri e Scritti" className="mx-auto max-w-screen-2xl px-5 py-12 sm:px-6 sm:py-16">
+        <BooksCarousel books={libriRecenti} />
         <section aria-label="Altri scritti" className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <PublicationSection title="Curatele e Traduzioni" items={curatele} visibleCount={curatele.length} />
           <PublicationSection title="Articoli Accademici" items={articoliAccademici} visibleCount={3} />

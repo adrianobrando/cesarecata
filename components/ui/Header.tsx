@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SearchBar from "./SearchBar";
 
 const navigation = [
@@ -47,8 +47,13 @@ function WhatsAppButton() {
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const menuRef = useRef<HTMLDetailsElement>(null);
   const pathname = usePathname();
   const solidHeader = scrolled || pathname === "/inserimento-spettacoli";
+
+  useEffect(() => {
+    if (menuRef.current) menuRef.current.open = false;
+  }, [pathname]);
 
   useEffect(() => {
     const updateScrollState = () => setScrolled(window.scrollY > 24);
@@ -87,17 +92,25 @@ export default function Header() {
           </div>
         </div>
 
-        <details className="shrink-0 2xl:hidden">
+        <details ref={menuRef} className="shrink-0 2xl:hidden">
           <summary
-            className={`cursor-pointer rounded px-3 py-2 font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue ${
+            aria-label="Menu di navigazione"
+            className={`flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue [&::-webkit-details-marker]:hidden ${
               solidHeader ? "text-dark-blue" : "text-white focus-visible:outline-white"
             }`}
           >
-            Menu
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-6 w-6">
+              <path strokeLinecap="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
           </summary>
           <nav
             aria-label="Navigazione principale"
             className="absolute inset-x-0 top-full max-h-[calc(100vh-5rem)] overflow-y-auto border-b border-light-blue bg-white p-4 shadow-lg"
+            onClick={(event) => {
+              if (event.target instanceof Element && event.target.closest("a")) {
+                if (menuRef.current) menuRef.current.open = false;
+              }
+            }}
           >
             <ul className="space-y-2">
               <NavigationLinks scrolled />
