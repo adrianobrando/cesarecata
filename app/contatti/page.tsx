@@ -18,7 +18,7 @@ export default function ContattiPage() {
       <section className="bg-[#25D366] px-5 py-16 text-center text-[#123123] sm:px-6">
         <h2 className="font-display text-3xl font-semibold">Resta in contatto</h2>
         <p className="mt-4">Iscriviti al Canale WhatsApp per seguire le novità e gli spettacoli.</p>
-        <a href="#" className="mt-8 inline-flex rounded-lg bg-white px-8 py-4 text-lg font-semibold text-[#123123] shadow-sm hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#123123]">
+        <a href="https://www.whatsapp.com/channel/0029VbB3zeKEQIaujAzFwa1y" className="mt-8 inline-flex rounded-lg bg-white px-8 py-4 text-lg font-semibold text-[#123123] shadow-sm hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#123123]">
           Segui il Canale WhatsApp
         </a>
       </section>
