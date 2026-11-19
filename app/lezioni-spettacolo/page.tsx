@@ -8,14 +8,14 @@ import Button from "@/components/ui/Button";
 import Hero from "@/components/ui/Hero";
 import { spettacoli } from "@/data/spettacoli";
 import { countShowDates, formatShowDates, getShowDateCount, getShowPage } from "@/lib/show-dates";
-import { supabase } from "@/lib/supabase";
+import { getSupabase } from "@/lib/supabase";
 import type { Event } from "@/types/database";
 
 
 async function ShowGrid({ start }: { start: number }) {
   await connection();
 
-  const { data: events, error, count } = await supabase
+  const { data: events, error, count } = await getSupabase()
     .from("events")
     .select("show_reference", { count: "exact" })
     .gte("event_date", new Date().toISOString())

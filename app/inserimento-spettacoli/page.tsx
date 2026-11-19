@@ -45,7 +45,12 @@ class ApiError extends Error {
 async function api<T>(url: string, init?: RequestInit): Promise<T> {
   const response = await fetch(url, { cache: "no-store", ...init });
   const body = await response.json();
-  if (!response.ok) throw new ApiError(typeof body.error === "string" ? body.error : "Si è verificato un errore.", response.status);
+  if (!response.ok) {
+    const message = typeof body === "object" && body !== null && "error" in body && typeof body.error === "string"
+      ? body.error
+      : "Si è verificato un errore.";
+    throw new ApiError(message, response.status);
+  }
   return body as T;
 }
 

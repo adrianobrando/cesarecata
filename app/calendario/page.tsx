@@ -5,7 +5,7 @@ import { connection } from "next/server";
 import { Suspense } from "react";
 import Button from "@/components/ui/Button";
 import Hero from "@/components/ui/Hero";
-import { supabase } from "@/lib/supabase";
+import { getSupabase } from "@/lib/supabase";
 import { formatDate } from "@/lib/utils";
 import type { Event } from "@/types/database";
 
@@ -17,7 +17,7 @@ type CalendarEvent = Pick<
 async function EventList() {
   await connection();
 
-  const { data: events, error } = await supabase
+  const { data: events, error } = await getSupabase()
     .from("events")
     .select("id, event_date, title, subtitle, image_url, performers, entry_type, ticket_link")
     .gte("event_date", new Date().toISOString())

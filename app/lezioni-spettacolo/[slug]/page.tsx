@@ -6,7 +6,7 @@ import { Suspense } from "react";
 import Button from "@/components/ui/Button";
 import Hero from "@/components/ui/Hero";
 import { spettacoli, type Spettacolo } from "@/data/spettacoli";
-import { supabase } from "@/lib/supabase";
+import { getSupabase } from "@/lib/supabase";
 import { formatDate } from "@/lib/utils";
 import type { Event } from "@/types/database";
 
@@ -15,7 +15,7 @@ type ShowEvent = Pick<Event, "id" | "event_date" | "entry_type" | "ticket_link">
 
 async function UpcomingDates({ show }: { show: Spettacolo }) {
   await connection();
-  const query = supabase
+  const query = getSupabase()
     .from("events")
     .select("id, event_date, entry_type, ticket_link", { count: "exact" });
 

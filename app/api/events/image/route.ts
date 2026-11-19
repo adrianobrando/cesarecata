@@ -2,7 +2,7 @@ export const runtime = 'edge';
 
 import { NextRequest, NextResponse } from "next/server";
 import { isAdmin, isSameOrigin } from "@/lib/admin-auth";
-import { supabaseAdmin } from "@/lib/supabase-admin";
+import { getSupabaseAdmin } from "@/lib/supabase-admin";
 
 const imageTypes: Record<string, string> = {
   "image/jpeg": "jpg",
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Usa un'immagine JPEG, PNG, WebP o GIF di massimo 5 MB." }, { status: 400 });
   }
   const path = `${crypto.randomUUID()}.${imageTypes[file.type]}`;
-  const bucket = supabaseAdmin.storage.from("event-images");
+  const bucket = getSupabaseAdmin().storage.from("event-images");
   const { error } = await bucket.upload(path, file, { contentType: file.type });
   if (error) {
     console.error("Errore nel caricamento dell'immagine:", error);

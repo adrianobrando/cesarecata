@@ -37,11 +37,16 @@ ADMIN_PASSWORD=PASSWORD_AMMINISTRATORE_LUNGA_E_CASUALE
 ```
 
 Non condividere né pubblicare la service role key. Riavvia il server dopo aver
-modificato le variabili; quelle `NEXT_PUBLIC_` sono incluse nel codice destinato
-al browser durante la build e non sono segrete.
+modificato le variabili. Le variabili `NEXT_PUBLIC_` non sono segrete e possono
+essere incluse nel codice destinato al browser durante la build.
 
-Importa `supabase` da `@/lib/supabase` per le operazioni pubbliche e
-`supabaseAdmin` da `@/lib/supabase-admin` esclusivamente nel codice server.
+Usa `getSupabase()` da `@/lib/supabase` per le operazioni pubbliche e
+`getSupabaseAdmin()` da `@/lib/supabase-admin` esclusivamente nel codice server,
+durante la gestione della richiesta. Su Cloudflare Pages configurare tutte e tre
+le variabili Supabase come binding per ogni ambiente (produzione e anteprima):
+i client le leggono a runtime dai binding della richiesta, senza incorporare
+valori di build. Se mancanti a runtime, viene segnalato un errore; i valori
+segnaposto sono ammessi solo durante la build.
 Il client admin ignora le policy RLS: usalo solo per operazioni autorizzate.
 Configura le policy RLS del database e di Storage per il client pubblico e
 crea separatamente gli eventuali bucket necessari.
