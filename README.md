@@ -47,6 +47,8 @@ le variabili Supabase come binding per ogni ambiente (produzione e anteprima):
 i client le leggono a runtime dai binding della richiesta, senza incorporare
 valori di build. Se mancanti a runtime, viene segnalato un errore; i valori
 segnaposto sono ammessi solo durante la build.
+Entrambi i client usano il `fetch` globale del runtime e non persistono né
+aggiornano automaticamente le sessioni.
 Il client admin ignora le policy RLS: usalo solo per operazioni autorizzate.
 Configura le policy RLS del database e di Storage per il client pubblico e
 crea separatamente gli eventuali bucket necessari.

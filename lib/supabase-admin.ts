@@ -6,6 +6,9 @@ import { getSupabaseConfig } from "./supabase-env";
 export function getSupabaseAdmin() {
   const { url, key } = getSupabaseConfig("SUPABASE_SERVICE_ROLE_KEY");
   return createClient(url, key, {
+    global: {
+      fetch: fetch,
+    },
     auth: {
       autoRefreshToken: false,
       persistSession: false,
