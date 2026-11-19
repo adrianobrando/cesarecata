@@ -2,7 +2,7 @@ import type { Event } from "@/types/database";
 
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
-export type EventInput = Pick<Event, "event_date" | "title" | "subtitle" | "image_url" | "performers" | "entry_type" | "ticket_link" | "show_reference">;
+export type EventInput = Pick<Event, "event_date" | "location" | "title" | "subtitle" | "image_url" | "performers" | "entry_type" | "ticket_link" | "show_reference">;
 
 export function parseEventInput(value: unknown): EventInput | null {
   if (!value || typeof value !== "object" || Array.isArray(value)) return null;
@@ -13,6 +13,7 @@ export function parseEventInput(value: unknown): EventInput | null {
     Number.isNaN(Date.parse(input.event_date)) ||
     typeof input.title !== "string" || !input.title.trim() ||
     typeof input.subtitle !== "string" || !input.subtitle.trim() ||
+    (input.location != null && typeof input.location !== "string") ||
     (input.entry_type !== "libero" && input.entry_type !== "pagamento") ||
     typeof input.show_reference !== "string" || input.show_reference.length > 120 || !slugPattern.test(input.show_reference) ||
     (input.performers !== null && typeof input.performers !== "string") ||
@@ -31,6 +32,7 @@ export function parseEventInput(value: unknown): EventInput | null {
   }
   return {
     event_date: new Date(input.event_date).toISOString(),
+    ...(input.location !== undefined && { location: input.location?.trim() || null }),
     title: input.title.trim(),
     subtitle: input.subtitle.trim(),
     performers: input.performers?.trim() || null,

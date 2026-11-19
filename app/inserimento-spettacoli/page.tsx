@@ -9,6 +9,7 @@ import type { Event } from "@/types/database";
 
 type EventForm = {
   event_date: string;
+  location: string;
   title: string;
   subtitle: string;
   performers: string;
@@ -21,6 +22,7 @@ type EventForm = {
 
 const emptyForm: EventForm = {
   event_date: "",
+  location: "",
   title: "",
   subtitle: "",
   performers: "",
@@ -149,6 +151,7 @@ export default function InserimentoSpettacoli() {
         new_show_title: undefined,
         show_reference: showReference,
         event_date: new Date(form.event_date).toISOString(),
+        location: form.location.trim() || null,
         image_url: imageUrl,
         performers: form.performers.trim() || null,
         ticket_link: form.entry_type === "pagamento" ? form.ticket_link.trim() || null : null,
@@ -172,6 +175,7 @@ export default function InserimentoSpettacoli() {
   function editEvent(event: Event) {
     setForm({
       event_date: localDateTime(event.event_date),
+      location: event.location ?? "",
       title: event.title,
       subtitle: event.subtitle,
       performers: event.performers ?? "",
@@ -237,10 +241,16 @@ export default function InserimentoSpettacoli() {
               <input className={inputClass} id="image" type="file" accept="image/jpeg,image/png,image/webp,image/gif" ref={fileInput} onChange={(e) => setImage(e.target.files?.[0] ?? null)} />
               {form.image_url && <p className="mt-1 text-sm">Immagine già presente. Scegli un file per sostituirla.</p>}
             </div>
-            <div>
-              <label className="mb-1 block font-medium" htmlFor="event-date">Data e ora</label>
-              <input className={inputClass} id="event-date" type="datetime-local" required value={form.event_date} onChange={(e) => setForm({ ...form, event_date: e.target.value })} />
-              <p className="mt-1 text-sm">L&apos;orario usa il fuso orario del tuo dispositivo.</p>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label className="mb-1 block font-medium" htmlFor="event-date">Data e ora</label>
+                <input className={inputClass} id="event-date" type="datetime-local" required value={form.event_date} onChange={(e) => setForm({ ...form, event_date: e.target.value })} />
+                <p className="mt-1 text-sm">L&apos;orario usa il fuso orario del tuo dispositivo.</p>
+              </div>
+              <div>
+                <label className="mb-1 block font-medium" htmlFor="location">Luogo (opzionale)</label>
+                <input className={inputClass} id="location" type="text" value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} />
+              </div>
             </div>
             <div>
               <label className="mb-1 block font-medium" htmlFor="title">Titolo</label>

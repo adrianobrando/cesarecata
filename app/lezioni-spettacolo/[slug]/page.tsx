@@ -10,14 +10,14 @@ import { getSupabase } from "@/lib/supabase";
 import { formatDate } from "@/lib/utils";
 import type { Event } from "@/types/database";
 
-type ShowEvent = Pick<Event, "id" | "event_date" | "entry_type" | "ticket_link">;
+type ShowEvent = Pick<Event, "id" | "event_date" | "location" | "entry_type" | "ticket_link">;
 
 
 async function UpcomingDates({ show }: { show: Spettacolo }) {
   await connection();
   const query = getSupabase()
     .from("events")
-    .select("id, event_date, entry_type, ticket_link", { count: "exact" });
+    .select("id, event_date, location, entry_type, ticket_link", { count: "exact" });
 
   const filtered = show.legacy_ref && show.legacy_ref !== show.id
     ? query.or(`show_reference.eq.${show.id},show_reference.eq.${show.legacy_ref}`)
@@ -41,7 +41,10 @@ async function UpcomingDates({ show }: { show: Spettacolo }) {
       <ul className="mt-5 space-y-4">
         {events.map((event) => (
           <li key={event.id} className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-light-blue bg-white p-5">
-            <time dateTime={event.event_date} className="font-semibold text-dark-blue">{formatDate(event.event_date)}</time>
+            <p className="font-semibold text-dark-blue">
+              <time dateTime={event.event_date}>{formatDate(event.event_date)}</time>
+              {event.location && <> - {event.location}</>}
+            </p>
             {event.entry_type === "libero" ? (
               <span className="rounded-full bg-green-100 px-4 py-2 text-sm font-semibold text-green-800">Ingresso Libero</span>
             ) : event.ticket_link ? (
