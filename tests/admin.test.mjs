@@ -45,3 +45,22 @@ test("event input validates fields and clears prevendita for free events", () =>
   }
   assert.equal(parseEventInput({ ...event, image_url: "javascript:alert(1)" }), null);
 });
+
+test("event input accepts an optional nullable location and rejects other types", () => {
+  const event = {
+    event_date: "2026-12-01T20:30:00+01:00",
+    title: "Titolo",
+    subtitle: "Sottotitolo",
+    image_url: null,
+    performers: null,
+    entry_type: "libero",
+    ticket_link: null,
+    show_reference: "labirinto",
+  };
+  assert.equal(Object.hasOwn(parseEventInput(event), "location"), false);
+  assert.equal(parseEventInput({ ...event, location: null })?.location, null);
+  assert.equal(parseEventInput({ ...event, location: "  Teatro comunale  " })?.location, "Teatro comunale");
+  assert.equal(parseEventInput({ ...event, location: "  " })?.location, null);
+  assert.equal(parseEventInput({ ...event, location: 42 }), null);
+  assert.equal(parseEventInput({ ...event, location: {} }), null);
+});

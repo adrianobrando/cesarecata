@@ -19,6 +19,9 @@ Apri [http://localhost:3000](http://localhost:3000). Le modifiche ai file vengon
 sincronizzate nel container; le dipendenze vengono installate all'avvio in un
 volume dedicato. Per fermare il server usa `docker compose down`.
 
+Il server di sviluppo usa `.next-dev`, separata da `.next` usata dalle build,
+per evitare conflitti se vengono eseguiti contemporaneamente.
+
 La palette Tailwind include `primary-blue`, `light-blue` e `dark-blue`.
 Fraunces viene usato per `h1`, `h2` e gli elementi con classe `logo`; DM Sans
 è il font predefinito. Sono disponibili anche le utility `font-display` e
@@ -70,7 +73,9 @@ login presso il provider o un reverse proxy: l'app non limita i tentativi.
 La sessione dura 8 ore; cambiare la password invalida le sessioni esistenti.
 
 La tabella `events` deve corrispondere al tipo `Event` e permettere la lettura
-pubblica tramite RLS. Crea un bucket pubblico `event-images` in Supabase Storage:
+pubblica tramite RLS. La colonna `location` è di tipo `text` e può essere nulla;
+il luogo è opzionale e viene mostrato nel calendario e nelle prossime date.
+Crea un bucket pubblico `event-images` in Supabase Storage:
 gli upload autenticati avvengono sul server con la service role key, senza
 richiedere policy di scrittura pubbliche. Sono accettati JPEG, PNG, WebP e GIF
 fino a 5 MB (verifica anche i limiti di upload del provider). Le immagini non
@@ -85,7 +90,7 @@ eventi futuri: se la risposta è incompleta, la pagina segnala il problema
 anziché mostrare conteggi parziali.
 L'archivio in `data/spettacoli.ts` contiene 29 spettacoli, inclusa
 «La vita invisibile», non numerata nel testo sorgente. Le descrizioni mancanti
-sono segnalate con un testo provvisorio. Le schede sono mostrate quattro per
+sono segnalate con un testo provvisorio. Le schede sono mostrate sei per
 pagina; i badge e i dettagli comprendono le date associate allo slug o al
 relativo `legacy_ref`. La gestione eventi accetta entrambi i riferimenti; le
 righe esistenti non vengono migrate automaticamente.
@@ -98,10 +103,8 @@ righe esistenti non vengono migrate automaticamente.
 preferisce ridurre le animazioni.
 `Header` e `Footer` sono inclusi nel layout globale. Le icone social nel footer
 sono segnaposto senza collegamenti finché non vengono forniti gli indirizzi.
-I link di navigazione indicano percorsi
-previsti, alcune delle cui pagine devono ancora essere create; il pulsante WhatsApp
-nell'header è disabilitato finché non viene fornito l'indirizzo del canale.
-La pagina contatti usa temporaneamente `#` come link al canale WhatsApp.
+I link di navigazione indicano percorsi previsti, alcune delle cui pagine devono
+ancora essere create. L'header e la pagina contatti rimandano al canale WhatsApp ufficiale.
 La pagina `/libri-e-scritti` mostra i libri in `data/libri.ts`, con descrizioni
 espandibili e immagini provvisorie. I link di acquisto sono segnaposto (`#`).
 La ricerca copre titoli e descrizioni degli spettacoli e dei libri e collega
