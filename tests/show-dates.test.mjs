@@ -32,12 +32,13 @@ test("il badge somma i riferimenti attuali e precedenti senza duplicare quelli i
   assert.equal(getShowDateCount(counts, { id: "altro" }), 0);
 });
 
-test("getShowPage pagina quattro spettacoli e gestisce parametri non validi", () => {
-  assert.deepEqual(getShowPage("1", 5), { page: 1, totalPages: 2, start: 0 });
-  assert.deepEqual(getShowPage("2", 5), { page: 2, totalPages: 2, start: 4 });
-  assert.deepEqual(getShowPage("99", 5), { page: 2, totalPages: 2, start: 4 });
+test("getShowPage pagina sei spettacoli e gestisce parametri non validi", () => {
+  assert.deepEqual(getShowPage("1", 6, 6), { page: 1, totalPages: 1, start: 0 });
+  assert.deepEqual(getShowPage("1", 7, 6), { page: 1, totalPages: 2, start: 0 });
+  assert.deepEqual(getShowPage("2", 7, 6), { page: 2, totalPages: 2, start: 6 });
+  assert.deepEqual(getShowPage("99", 29, 6), { page: 5, totalPages: 5, start: 24 });
   for (const value of [undefined, "0", "-1", "1.5", "2abc", ["2"], "999999999999999999999"]) {
-    assert.deepEqual(getShowPage(value, 5), { page: 1, totalPages: 2, start: 0 });
+    assert.deepEqual(getShowPage(value, 7, 6), { page: 1, totalPages: 2, start: 0 });
   }
-  assert.deepEqual(getShowPage(undefined, 0), { page: 1, totalPages: 1, start: 0 });
+  assert.deepEqual(getShowPage(undefined, 0, 6), { page: 1, totalPages: 1, start: 0 });
 });

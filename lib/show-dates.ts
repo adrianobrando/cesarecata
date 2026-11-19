@@ -18,9 +18,9 @@ export function getShowDateCount(counts: Map<string, number>, show: Pick<Spettac
   return current + (show.legacy_ref && show.legacy_ref !== show.id ? counts.get(show.legacy_ref) ?? 0 : 0);
 }
 
-export function getShowPage(value: string | string[] | undefined, showCount: number) {
-  const totalPages = Math.max(1, Math.ceil(showCount / 4));
+export function getShowPage(value: string | string[] | undefined, showCount: number, itemsPerPage: number) {
+  const totalPages = Math.max(1, Math.ceil(showCount / itemsPerPage));
   const requested = typeof value === "string" && /^[1-9]\d*$/.test(value) ? Number(value) : 1;
   const page = Number.isSafeInteger(requested) ? Math.min(requested, totalPages) : 1;
-  return { page, totalPages, start: (page - 1) * 4 };
+  return { page, totalPages, start: (page - 1) * itemsPerPage };
 }
