@@ -23,7 +23,7 @@ export default function BiografiaPage() {
               </h2>
               <p className="mt-5 text-xl leading-relaxed text-slate-700">
                 Cesare Catà è nato a Porto San Giorgio tra il 2 e il 3 agosto del 1981. Come una
-                specie di trovatore del nuovo millennio, si esibisce regolarmente con monologhi e
+                specie di trobadore del nuovo millennio, si esibisce regolarmente con monologhi e
                 lezioni-spettacolo, in teatro e in luoghi inusuali come pub, boschi, ristoranti e
                 spiagge. È un monologhista e storyteller che intreccia il teatro di narrazione con
                 la divulgazione filosofico-letteraria, la psicologia archetipica e l’ironia della

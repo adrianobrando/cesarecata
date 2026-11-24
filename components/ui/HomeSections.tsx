@@ -46,26 +46,45 @@ export default function HomeSections() {
           <h2 id="home-bio-title" className="font-display text-3xl font-semibold text-dark-blue sm:text-4xl">
             Bio
           </h2>
-          <p className="mt-4 text-xl font-medium leading-relaxed text-dark-blue">
-            Cesare Catà è filosofo e performer teatrale, un narratore di storie tra letteratura,
-            filosofia e palcoscenico.
+          <p className="mt-4 leading-relaxed text-slate-700">
+            Cesare Catà (Porto San Giorgio, 1981) è un filosofo e uno storyteller teatrale. Come
+            una specie di trobadore del nuovo millennio, si esibisce in lezioni-spettacolo in cui
+            racconta Shakespeare, gli antichi miti, le fiabe folkloriche, i grandi classici della
+            letteratura. Porta le sue storie sia in teatro che in luoghi inusuali come spiagge,
+            pub, boschi, montagne. Nei suoi racconti si intrecciano il teatro di narrazione, la
+            psicologia archetipica e la stand-up comedy.
           </p>
           <p className="mt-4 leading-relaxed text-slate-700">
-            Come un trovatore contemporaneo, intreccia teatro di narrazione, divulgazione
-            filosofico-letteraria, psicologia archetipica e ironia per riscoprire il valore delle
-            storie antiche nel presente.
+            Dottore di Ricerca (PhD) in Filosofia del Rinascimento presso l’Università di Macerata,
+            ha avuto esperienze di formazione e collaborazione con università e centri di ricerca
+            in USA, Francia, Germania, Irlanda. Vive nelle Marche, nella terra che tanto ama tra
+            l’Adriatico e i Monti Sibillini.
+          </p>
+          <p className="mt-4 leading-relaxed text-slate-700">
+            Tra le sue pubblicazioni: <em>Chiedilo a Shakespeare</em> (Ponte alle Grazie);{" "}
+            <em>Una zattera per Itaca. L’Odissea come guida spirituale</em> (Ponte alle Grazie);{" "}
+            <em>Tra i pub e le Fate. Viaggio magico e letterario in Irlanda</em> (Il Melangolo);{" "}
+            <em>Addio, Cavaliere! Filosofia e destino del corteggiamento</em> (Liberilibri);{" "}
+            <em>Contro il morire della luce. Dylan Thomas</em> (Ares).
           </p>
           <Button href="/biografia" variant="secondary" className="mt-6">
             Scopri la biografia
           </Button>
         </div>
-        <ImagePlaceholder className="aspect-[4/3] rounded-2xl border border-light-blue" />
+        <Image
+          src="/images/pic-cesare_1.jpg"
+          alt="Cesare Catà legge accanto a un leggio"
+          width={768}
+          height={960}
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          className="h-auto w-full rounded-2xl"
+        />
       </section>
 
       <section aria-labelledby="home-shows-title" className="px-5 py-4 sm:px-6 sm:py-6">
         <div className="relative mx-auto min-h-[26rem] max-w-screen-2xl overflow-hidden rounded-2xl bg-dark-blue sm:min-h-[30rem]">
           <Image
-            src="/images/spettacolo-placeholder.svg"
+            src="/images/pic-shakespeareonthebeach_1.jpg"
             alt=""
             fill
             sizes="(min-width: 1536px) 1536px, 100vw"
@@ -77,7 +96,7 @@ export default function HomeSections() {
               Lezioni-Spettacolo
             </h2>
             <p className="mt-4 text-lg leading-relaxed sm:text-xl">
-              Come un trovatore contemporaneo, Cesare Catà intreccia filosofia, letture teatrali,
+              Come un trobadore contemporaneo, Cesare Catà intreccia filosofia, letture teatrali,
               psicologia archetipica e stand-up comedy per raccontare antiche storie sempre nuove,
               tra incanto e ironia.
             </p>
