@@ -23,9 +23,9 @@ export default function Hero({ title, subtitle, breadcrumbs, videoUrl, home = fa
 
   return (
     <section
-      className={`relative flex items-center px-5 sm:px-8 ${
+      className={`relative flex items-center ${
         home
-          ? "-mt-20 min-h-[70vh] bg-dark-blue bg-cover bg-center pb-20 pt-40 text-white"
+          ? "-mt-20 min-h-[90vh] bg-dark-blue bg-cover bg-center pb-20 pt-40 text-white"
           : "pb-14 pt-16 text-dark-blue sm:pb-20 sm:pt-24"
       }`}
       style={home ? { backgroundImage: 'url("/images/bg_cesare-header1.jpg")' } : undefined}
@@ -44,13 +44,13 @@ export default function Hero({ title, subtitle, breadcrumbs, videoUrl, home = fa
         />
       )}
       {home && <div aria-hidden="true" className="absolute inset-0 bg-[#102b42]/70" />}
-      <div className={`relative mx-auto w-full max-w-[1200px] ${home ? "" : "text-center"}`}>
+      <div className="site-container relative">
         <h1 className={`font-display font-normal leading-[1.05] ${home ? "max-w-4xl text-5xl sm:text-6xl lg:text-7xl" : "text-5xl sm:text-6xl lg:text-7xl"}`}>
           {title}
         </h1>
         {breadcrumbItems.length > 0 && <Breadcrumb items={breadcrumbItems} variant={home ? "light" : "dark"} />}
         {subtitle && (
-          <h2 className={`mt-6 max-w-3xl text-xl font-normal leading-relaxed sm:text-2xl ${home ? "" : "mx-auto"}`}>
+          <h2 className="mt-6 max-w-3xl text-xl font-normal leading-relaxed sm:text-2xl">
             {subtitle}
           </h2>
         )}

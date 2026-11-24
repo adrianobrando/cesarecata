@@ -212,7 +212,7 @@ export default function InserimentoSpettacoli() {
   }
 
   return (
-    <main className="mx-auto max-w-5xl px-5 py-12">
+    <main className="site-container py-12">
       <h1 className="text-4xl text-dark-blue">Gestione spettacoli</h1>
       <Breadcrumb
         variant="dark"

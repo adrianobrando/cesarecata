@@ -90,12 +90,17 @@ eventi futuri: se la risposta è incompleta, la pagina segnala il problema
 anziché mostrare conteggi parziali.
 L'archivio in `data/spettacoli.ts` contiene 29 spettacoli, inclusa
 «La vita invisibile», non numerata nel testo sorgente. Le descrizioni mancanti
-sono segnalate con un testo provvisorio. Le schede sono mostrate sei per
-pagina; i badge e i dettagli comprendono le date associate allo slug o al
-relativo `legacy_ref`. La gestione eventi accetta entrambi i riferimenti; le
+sono segnalate con un testo provvisorio. Le schede sono raccolte in un carosello
+navigabile con le frecce su desktop e con lo scorrimento touch su mobile;
+i badge comprendono le date associate allo slug o al relativo `legacy_ref`
+e collegano alla prima data futura nel calendario. La gestione eventi accetta entrambi i riferimenti; le
 righe esistenti non vengono migrate automaticamente.
 
 ## Componenti UI
+
+Usa `.site-container` per allineare orizzontalmente header, sezioni delle pagine
+e footer. La classe definisce una larghezza massima di 1400 px e padding
+responsive condivisi.
 
 `components/ui` contiene `Button`, utilizzabile come pulsante o link tramite
 `href`, e `Hero`, configurabile con `title`, `subtitle` opzionale, `bgImage` e

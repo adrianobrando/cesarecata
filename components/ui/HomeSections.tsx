@@ -4,35 +4,19 @@ import Button from "./Button";
 const programs = [
   {
     title: "I Corsi",
+    image: "/images/pic-bg-corsi.png",
+    href: "/corsi",
     description:
       "Percorsi formativi per scoprire l’arte di parlare in pubblico, raccontare storie e pensare. Per adulti e ragazzi.",
   },
   {
     title: "Viaggi Letterari",
+    image: "/images/pic-bg-viaggiletterari.png",
+    href: "/viaggi-letterari",
     description:
       "Dall’Irlanda di Yeats alla Grecia di Omero, viaggi sulle tracce dei grandi scrittori e dei loro mondi.",
   },
 ];
-
-function ImagePlaceholder({ className }: { className: string }) {
-  return (
-    <div className={`relative overflow-hidden bg-light-blue ${className}`}>
-      <Image
-        src="/images/spettacolo-placeholder.svg"
-        alt=""
-        fill
-        sizes="(min-width: 1024px) 50vw, 100vw"
-        className="object-cover"
-      />
-      <span
-        aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 bg-dark-blue/70 px-4 py-2 text-center text-sm font-medium text-white"
-      >
-        Immagine in arrivo
-      </span>
-    </div>
-  );
-}
 
 export default function HomeSections() {
   return (
@@ -40,7 +24,7 @@ export default function HomeSections() {
       <section
         id="bio"
         aria-labelledby="home-bio-title"
-        className="mx-auto grid max-w-[1200px] items-center gap-10 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20"
+        className="site-container grid items-center gap-10 py-20 sm:py-28 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20"
       >
         <div className="lg:order-2">
           <h2 id="home-bio-title" className="font-display text-4xl font-normal text-dark-blue sm:text-5xl">
@@ -81,8 +65,8 @@ export default function HomeSections() {
         />
       </section>
 
-      <section aria-labelledby="home-shows-title" className="px-5 py-4 sm:px-8 sm:py-6">
-        <div className="relative mx-auto min-h-[26rem] max-w-[1200px] overflow-hidden bg-dark-blue sm:min-h-[30rem]">
+      <section aria-labelledby="home-shows-title" className="site-container py-4 sm:py-6">
+        <div className="relative min-h-[32rem] overflow-hidden rounded-2xl bg-dark-blue sm:min-h-[36rem]">
           <Image
             src="/images/pic-shakespeareonthebeach_1.jpg"
             alt=""
@@ -90,8 +74,8 @@ export default function HomeSections() {
             sizes="(min-width: 1536px) 1536px, 100vw"
             className="object-cover"
           />
-          <div aria-hidden="true" className="absolute inset-0 bg-dark-blue/75" />
-          <div className="relative mx-auto flex min-h-[26rem] max-w-4xl flex-col items-center justify-center px-6 py-16 text-center text-white sm:min-h-[30rem]">
+          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-dark-blue via-dark-blue/85 to-transparent" />
+          <div className="relative mx-auto flex min-h-[32rem] max-w-4xl flex-col items-center justify-end px-6 pb-12 pt-16 text-center text-white sm:min-h-[36rem]">
             <h2 id="home-shows-title" className="font-display text-4xl font-normal sm:text-5xl">
               Lezioni-Spettacolo
             </h2>
@@ -116,17 +100,23 @@ export default function HomeSections() {
 
       <section
         aria-label="Corsi e viaggi letterari"
-        className="mx-auto grid max-w-[1200px] gap-8 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-2"
+        className="site-container grid gap-8 pb-20 pt-8 sm:pb-28 sm:pt-10 lg:grid-cols-2"
       >
-        {programs.map(({ title, description }) => (
+        {programs.map(({ title, image, href, description }) => (
           <article
             key={title}
-            className="relative flex min-h-[26rem] items-end overflow-hidden bg-dark-blue sm:min-h-[30rem]"
+            className="relative flex min-h-[26rem] items-end overflow-hidden rounded-2xl bg-dark-blue sm:min-h-[30rem]"
           >
-            <ImagePlaceholder className="absolute inset-0" />
+            <Image
+              src={image}
+              alt=""
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+            />
             <div
               aria-hidden="true"
-              className="absolute inset-0 bg-dark-blue/75"
+              className="absolute inset-0 bg-gradient-to-t from-dark-blue via-dark-blue/85 to-transparent"
             />
             <div className="relative p-6 text-white sm:p-8">
               <h2 className="font-display text-3xl font-normal sm:text-4xl">
@@ -134,11 +124,11 @@ export default function HomeSections() {
               </h2>
               <p className="mt-3 leading-relaxed">{description}</p>
               <Button
-                href="/contatti"
+                href={href}
                 variant="secondary"
                 className="mt-6 border-white bg-white text-dark-blue hover:bg-light-blue"
               >
-                Richiedi informazioni<span className="sr-only">: {title}</span>
+                Scopri di più<span className="sr-only">: {title}</span>
               </Button>
             </div>
           </article>

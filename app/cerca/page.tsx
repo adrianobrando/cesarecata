@@ -65,7 +65,7 @@ export default function CercaPage({ searchParams }: { searchParams: SearchParams
   return (
     <main>
       <Hero title="Cerca" />
-      <section className="mx-auto min-h-[50vh] max-w-[1200px] px-5 pb-20 sm:px-8 sm:pb-28">
+      <section className="site-container min-h-[50vh] pb-20 sm:pb-28">
         <Suspense fallback={<p className="mt-6">Caricamento dei risultati...</p>}>
           <SearchResults searchParams={searchParams} />
         </Suspense>

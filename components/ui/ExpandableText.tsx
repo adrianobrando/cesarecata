@@ -15,7 +15,11 @@ export default function ExpandableText({ text, maxLength = 200 }: ExpandableText
 
   return (
     <div>
-      <p id={textId} className="whitespace-pre-line text-slate-700">
+      <p
+        id={textId}
+        title={text}
+        className={`whitespace-pre-line text-sm text-slate-600 ${expanded ? "" : "line-clamp-2"}`}
+      >
         {isLong && !expanded ? `${characters.slice(0, maxLength).join("")}...` : text}
       </p>
       {isLong && (

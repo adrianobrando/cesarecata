@@ -4,10 +4,11 @@ import Image from "next/image";
 import { connection } from "next/server";
 import { Suspense } from "react";
 import Button from "@/components/ui/Button";
+import CalendarEventScroll from "@/components/ui/CalendarEventScroll";
+import { EventDateLocation, EventEntry } from "@/components/ui/EventDetails";
 import Hero from "@/components/ui/Hero";
 import { formatMonth, isCalendarMonth, monthKey, monthStartUtc, shiftMonth } from "@/lib/calendar-months";
 import { getSupabase } from "@/lib/supabase";
-import { formatDate } from "@/lib/utils";
 import type { Event } from "@/types/database";
 
 type CalendarEvent = Pick<
@@ -67,7 +68,7 @@ async function EventList({ months }: { months: string[] }) {
           ) : (
             <ul className="space-y-6">
               {monthEvents.map((event) => (
-                <li key={event.id}>
+                <li key={event.id} id={`evento-${event.id}`} className="scroll-mt-24">
                   <article className="overflow-hidden bg-white sm:flex">
                     {event.image_url && (
                       <div className="relative aspect-[16/10] w-full shrink-0 bg-light-blue sm:aspect-auto sm:w-2/5">
@@ -82,10 +83,7 @@ async function EventList({ months }: { months: string[] }) {
                       </div>
                     )}
                     <div className="flex flex-1 flex-col items-start p-6 sm:p-8">
-                      <p className="text-sm font-semibold text-primary-blue">
-                        <time dateTime={event.event_date}>{formatDate(event.event_date)}</time>
-                        {event.location && <> | {event.location}</>}
-                      </p>
+                      <EventDateLocation event={event} />
                       <h3 className="mt-3 font-display text-3xl font-semibold text-dark-blue">
                         {event.title}
                       </h3>
@@ -94,22 +92,13 @@ async function EventList({ months }: { months: string[] }) {
                         <p className="mt-4 text-slate-600">{event.performers}</p>
                       )}
                       <div className="mt-6">
-                        {event.entry_type === "libero" ? (
-                          <span className="inline-flex rounded-full bg-green-100 px-4 py-2 text-sm font-semibold text-green-800">
-                            Ingresso Libero
-                          </span>
-                        ) : event.ticket_link ? (
-                          <Button href={event.ticket_link}>Acquista Biglietti</Button>
-                        ) : (
-                          <span className="inline-flex rounded-full bg-light-blue px-4 py-2 text-sm font-semibold text-primary-blue">
-                            Ingresso a pagamento
-                          </span>
-                        )}
+                        <EventEntry event={event} />
                       </div>
                     </div>
                   </article>
                 </li>
               ))}
+              <CalendarEventScroll key={months[0]} />
             </ul>
           )}
         </section>
@@ -165,7 +154,7 @@ export default function CalendarioPage({ searchParams }: { searchParams: Promise
         title="Calendario spettacoli"
         subtitle="Scopri i prossimi appuntamenti e vieni a trovarci a teatro."
       />
-      <section aria-label="Prossimi spettacoli" className="mx-auto max-w-5xl px-5 py-10 sm:py-14">
+      <section aria-label="Prossimi spettacoli" className="site-container py-10 sm:py-14">
         <Suspense fallback={<p>Caricamento degli eventi...</p>}>
           <CalendarContent searchParams={searchParams} />
         </Suspense>

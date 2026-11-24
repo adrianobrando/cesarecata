@@ -1,13 +1,15 @@
 export const runtime = 'edge';
 
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { connection } from "next/server";
 import { Suspense } from "react";
-import Button from "@/components/ui/Button";
+import { EventDateLocation, EventEntry } from "@/components/ui/EventDetails";
 import Hero from "@/components/ui/Hero";
 import { spettacoli, type Spettacolo } from "@/data/spettacoli";
+import { monthKey } from "@/lib/calendar-months";
+import { splitShowDescription } from "@/lib/show-description";
 import { getSupabase } from "@/lib/supabase";
-import { formatDate } from "@/lib/utils";
 import type { Event } from "@/types/database";
 
 type ShowEvent = Pick<Event, "id" | "event_date" | "location" | "entry_type" | "ticket_link">;
@@ -36,22 +38,19 @@ async function UpcomingDates({ show }: { show: Spettacolo }) {
   if (!events.length) return null;
 
   return (
-    <section aria-labelledby="upcoming-dates" className="mt-12">
-      <h2 id="upcoming-dates" className="font-display text-3xl font-semibold text-dark-blue">Prossime Date</h2>
-      <ul className="mt-5 space-y-4">
+    <section aria-labelledby="upcoming-dates">
+      <h2 id="upcoming-dates" className="font-display text-2xl font-semibold text-dark-blue">Prossime date</h2>
+      <ul className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-1">
         {events.map((event) => (
-          <li key={event.id} className="flex flex-wrap items-center justify-between gap-4 bg-white p-5">
-            <p className="font-semibold text-dark-blue">
-              <time dateTime={event.event_date}>{formatDate(event.event_date)}</time>
-              {event.location && <> - {event.location}</>}
-            </p>
-            {event.entry_type === "libero" ? (
-              <span className="rounded-full bg-green-100 px-4 py-2 text-sm font-semibold text-green-800">Ingresso Libero</span>
-            ) : event.ticket_link ? (
-              <Button href={event.ticket_link}>Acquista Biglietti</Button>
-            ) : (
-              <span className="rounded-full bg-light-blue px-4 py-2 text-sm font-semibold text-primary-blue">Ingresso a pagamento</span>
-            )}
+          <li key={event.id} className="flex flex-col items-start gap-4 bg-white p-5">
+            <EventDateLocation event={event} />
+            <EventEntry event={event} />
+            <Link
+              href={`/calendario?mese=${monthKey(new Date(event.event_date))}#evento-${encodeURIComponent(event.id)}`}
+              className="text-sm font-semibold text-primary-blue underline underline-offset-4 hover:text-dark-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue"
+            >
+              Vedi nel calendario
+            </Link>
           </li>
         ))}
       </ul>
@@ -63,6 +62,7 @@ export default async function SpettacoloPage({ params }: { params: Promise<{ slu
   const { slug } = await params;
   const show = spettacoli.find((item) => item.id === slug);
   if (!show) notFound();
+  const { subtitle, body } = splitShowDescription(show.description);
 
   return (
     <main>
@@ -74,11 +74,14 @@ export default async function SpettacoloPage({ params }: { params: Promise<{ slu
           { label: show.title },
         ]}
       />
-      <section className="mx-auto max-w-5xl px-5 py-12 sm:py-16">
-        <div className="whitespace-pre-line text-lg leading-relaxed text-slate-700">{show.description}</div>
-        <Suspense fallback={<p className="mt-12">Caricamento delle date...</p>}>
-          <UpcomingDates show={show} />
-        </Suspense>
+      <section className="site-container py-12 sm:py-16 lg:has-[#upcoming-dates]:grid lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] lg:grid-rows-[auto_1fr] lg:items-start lg:gap-x-12">
+        {subtitle && <h3 className="font-display text-2xl font-semibold text-dark-blue sm:text-3xl lg:col-start-1 lg:row-start-1">{subtitle}</h3>}
+        <div className="mt-8 empty:hidden lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:mt-0">
+          <Suspense fallback={<p>Caricamento delle date...</p>}>
+            <UpcomingDates show={show} />
+          </Suspense>
+        </div>
+        <div className="mt-8 whitespace-pre-line text-lg leading-relaxed text-slate-700 lg:col-start-1 lg:row-start-2">{body}</div>
       </section>
     </main>
   );

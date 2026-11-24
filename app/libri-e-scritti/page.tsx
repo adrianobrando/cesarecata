@@ -95,7 +95,7 @@ export default function LibriEScrittiPage() {
   return (
     <main>
       <Hero title="Libri e Scritti" />
-      <section aria-label="Libri e Scritti" className="mx-auto max-w-[1200px] px-5 pb-20 sm:px-8 sm:pb-28">
+      <section aria-label="Libri e Scritti" className="site-container pb-20 sm:pb-28">
         <BooksCarousel books={libriRecenti} />
         <section aria-label="Altri scritti" className="mt-20 grid grid-cols-1 gap-8 lg:grid-cols-2">
           <PublicationSection title="Curatele e Traduzioni" items={curatele} visibleCount={curatele.length} />

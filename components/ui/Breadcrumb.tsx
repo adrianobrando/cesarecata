@@ -17,7 +17,7 @@ export default function Breadcrumb({ items, variant = "light" }: BreadcrumbProps
 
   return (
     <nav aria-label="Percorso di navigazione" className={`mt-5 ${textColor}`}>
-      <ol className={`flex flex-wrap items-center gap-x-2 gap-y-1 text-sm sm:text-base ${variant === "dark" ? "justify-center" : ""}`}>
+      <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm sm:text-base">
         {items.map(({ label, href }, index) => {
           const current = index === items.length - 1;
           return (
