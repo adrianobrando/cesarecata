@@ -91,27 +91,27 @@ export default function BooksCarousel({ books }: { books: Libro[] }) {
               id={libro.id}
               className="scroll-mt-24"
             >
-              <article className="relative flex h-full min-h-72 overflow-hidden bg-white sm:min-h-80">
-                <div className="relative aspect-[3/4] w-[34%] shrink-0 bg-light-blue sm:w-[38%]">
+              <article className="relative flex h-full gap-3 overflow-hidden bg-white p-3 sm:gap-4 sm:p-4">
+                <div className="relative aspect-[2/3] w-[34%] shrink-0 self-start overflow-hidden rounded-md bg-light-blue sm:w-[38%]">
                   <Image
                     src={libro.image}
                     alt=""
                     fill
-                    sizes="(min-width: 1280px) 240px, (min-width: 768px) 19vw, 38vw"
+                    sizes="(min-width: 1280px) 210px, (min-width: 768px) 19vw, (min-width: 640px) 38vw, 34vw"
                     className="object-cover"
                   />
                 </div>
-                <div className="flex min-w-0 flex-1 flex-col items-start p-4 sm:p-6">
-                  <h2 className="font-display text-xl font-normal leading-tight text-dark-blue sm:text-2xl">
+                <div className="flex min-w-0 flex-1 flex-col items-start justify-center">
+                  <h2 className="font-display text-lg font-normal leading-tight text-dark-blue">
                     {libro.title}
                   </h2>
                   <p className="mt-2 text-sm font-medium text-slate-600">
                     {libro.editor} · {libro.year}
                   </p>
-                  <div className="mt-3 w-full">
+                  <div className="mt-2 w-full">
                     <ExpandableText text={libro.description} />
                   </div>
-                  <Button href={libro.href} className="mt-auto px-4 py-2 text-sm">
+                  <Button href={libro.href} className="mt-2 px-4 py-2 text-sm">
                     Acquista<span className="sr-only">: {libro.title}</span>
                   </Button>
                 </div>
@@ -130,7 +130,7 @@ export default function BooksCarousel({ books }: { books: Libro[] }) {
                   aria-label={`Vai alla pagina ${index + 1}`}
                   aria-current={activePage === index ? "page" : undefined}
                   onClick={() => goToPage(index)}
-                  className={`min-h-11 min-w-11 border px-3 py-2 text-sm font-semibold transition-colors motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue ${
+                  className={`min-h-11 min-w-11 rounded-full border px-3 py-2 text-sm font-semibold transition-colors motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue ${
                     activePage === index
                       ? "border-primary-blue bg-primary-blue text-white"
                       : "border-light-blue bg-white text-dark-blue hover:bg-light-blue"
