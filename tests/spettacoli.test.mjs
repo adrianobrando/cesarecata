@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 import { spettacoli } from "../data/spettacoli.ts";
 
@@ -25,8 +25,25 @@ test("l'archivio conserva tutti i testi, incluso lo spettacolo non numerato", as
       );
     }
     assert.match(show.id, /^[a-z0-9]+(?:-[a-z0-9]+)*$/);
-    assert.equal(show.image, "/images/spettacolo-placeholder.svg");
   });
+});
+
+test("le immagini disponibili sono associate agli spettacoli corretti", async () => {
+  const images = {
+    "se-giasone-fosse-rimasto-single": "ls_giasonefosserimastosingle.webp",
+    "shakespeare-juke-box": "ls_shakspearejukebox.webp",
+    "ginevra-ne-vale-la-pena": "ls_ginevranevalelapena.webp",
+    "fate-caprine-cavalieri-erranti": "ls_fatecaprineecavalierierranti.webp",
+    "il-labirinto-e-l-abbandono": "ls_labirintoeabbandono.webp",
+    "l-urlo-della-farfalla": "ls_urlodellafarfalla.webp",
+    "tue-so-le-laudi": "ls_tuesolelaudi.webp",
+    "rien-de-rien": "ls_rienderien.webp",
+  };
+  for (const show of spettacoli) {
+    const expected = images[show.id] ?? "spettacolo-placeholder.svg";
+    assert.equal(show.image, `/images/${expected}`, show.title);
+    await access(new URL(`../public/images/${expected}`, import.meta.url));
+  }
 });
 
 test("i quattro spettacoli originali conservano il loro riferimento precedente", () => {

@@ -25,7 +25,7 @@ Mescolando i linguaggi della filosofia e della stand-up comedy, la lezione-spett
 Lo storytelling dell'epica antica si interseca con le contraddizioni dei tempi moderni, alternando registri e idiomi differenti, dai testi in greco antico sino al vernacolo marchigiano.
 
 Gli spettatori sono invitati a un viaggio mirabolante come quello degli Argonauti, in un percorso che ricerca i significati simbolici nascosti dei testi classici, tra ironia e indagine filosofica.`,
-    image: "/images/spettacolo-placeholder.svg",
+    image: "/images/ls_giasonefosserimastosingle.webp",
   },
   {
     id: "shakespeare-juke-box",
@@ -33,7 +33,7 @@ Gli spettatori sono invitati a un viaggio mirabolante come quello degli Argonaut
     description: `Lezione-spettacolo tarologica sul teatro shakespeariano
 
 Questo spettacolo propone un viaggio originale e interattivo nel teatro di William Shakespeare. Il pubblico può determinare un percorso scegliendo tra 22 diversi personaggi delle opere del Bardo. La performance, che utilizza carte speciali, si richiama direttamente alla teoria e alla iconologia dei Tarocchi, per un percorso affascinante tra i drammi shakespeariani che è al contempo un'esplorazione negli archetipi dell’anima umana. Storytelling, recitazione e analisi dei significati dei monologhi proposti (in italiano e in inglese) compongono così uno spettacolo unico nel suo genere, fitto di di spunti di comicità e cabaret che si mescolano naturalmente a riflessioni filosofiche. Ogni messa in scena vede un percorso irripetibile tra i testi scelti dal pubblico tramite le carte, per cui ogni replica dello spettacolo comporrà un viaggio diverso, mai uguale al precedente.`,
-    image: "/images/spettacolo-placeholder.svg",
+    image: "/images/ls_shakspearejukebox.webp",
   },
   {
     id: "ginevra-ne-vale-la-pena",
@@ -41,7 +41,7 @@ Questo spettacolo propone un viaggio originale e interattivo nel teatro di Willi
     description: `Lezione-spettacolo su Corteggiamento & Cavalleria
 
 Lo spettacolo racconta e ripercorre il mito arturiano di Lancillotto e Ginevra per osservare il concetto di corteggiamento tra l'antico amor cortese e la disincantata modalità dei rapporti amorosi nella società contemporanea. Alternando i registri del teatro di narrazione e della stand-up comedy, la lezione spettacolo tocca alcuni antichi affascinanti archetipi come il simbolo del Graal, la città ideale di Camelot, il Cavaliere con la sua missione d'onore, la donna vista quale dama divina angelicata. Al centro del racconto c'è il concetto di corteggiamento e il suo destino: dalle ammalianti storie cavalleresche fino al mondo odierno funestato da molestie e digitalizzazione delle relazioni umane`,
-    image: "/images/spettacolo-placeholder.svg",
+    image: "/images/ls_ginevranevalelapena.webp",
   },
   {
     id: "prestatemi-orecchio",
@@ -65,7 +65,7 @@ Lo spettacolo intreccia le narrazioni di tre storie mitologiche provenienti da t
     description: `Lezione-spettacolo su Miti e Leggende dei Monti Sibillini.
 
 I Sibillini sono culla di antichi e preziosi miti, dalla figura della Sibilla Appenninica sino a quelle, non meno enigmatiche, delle Fate dai piedi di capra e dei folletti chiamati “Mazzamurelli”. Partendo dalle vicende narrate da Antoine de La Sale e da Andrea Barberino, lo spettacolo racconta e interpreta la storia dell’eroe noto come Guerrin Meschino – il suo peregrinare in tutto il mondo conosciuto, dall'Asia all’Irlanda, passando per i Monti Sibillini –, per confrontare la sua icona con quella di altri grandi eroi delle tradizioni leggendarie greche, celtiche e norrene. Lo spettatore è coinvolto in un viaggio affascinante nella tradizione folklorica marchigiana ed europea, attraverso un sorprendente mescolarsi di teatro di narrazione, divulgazione filosofica e stand-up comedy.`,
-    image: "/images/spettacolo-placeholder.svg",
+    image: "/images/ls_fatecaprineecavalierierranti.webp",
     legacy_ref: "fate-caprine",
   },
   {
@@ -90,7 +90,7 @@ Lo spettacolo narra il mito di Perseo e la sua caccia a Medusa, evocandone il pr
     description: `Lezione-spettacolo sul mito di Arianna e Teseo.
 
 Lo spettacolo, narrando il mito di Arianna e Tese si muove attorno all'archetipo dell'abbandono tra la cultura classica e quella contemporanea. Viene esplorato il simbolo del labirinto nei suoi molteplici rimandi filosofici e letterari, invitando il pubblico a un cammino simile a quello dell'eroe della storia. Mescolando i linguaggi del teatro di narrazione e della stand-up comedy, il monologo propone una rilettura originale e vibrante di una delle storie fondative della tradizione occidentale`,
-    image: "/images/spettacolo-placeholder.svg",
+    image: "/images/ls_labirintoeabbandono.webp",
     legacy_ref: "labirinto",
   },
   {
@@ -99,7 +99,7 @@ Lo spettacolo, narrando il mito di Arianna e Tese si muove attorno all'archetipo
     description: `Lezione-spettacolo su Jim Morrison e il mito di Dioniso
 
 Attraverso un racconto della vita e della figura del poeta rock-star Jim Douglas Morrison, lo spettacolo propone un'esplorazione filosofica e culturale dell'antico mito di Dioniso che, in forma post-moderna, ebbe in qualche modo a rivivere nella figura luminosa e maledetta del frontman dei Doors. Nella lezione-spettacolo, che vede la presenza di un attore-narratore e di una cantante polistrumentista, si alternano letture drammatizzate dei testi di Morrison, canzoni riarrangiate del repertorio dei Doors, e uno storytelling originale in cui la narrazione del mito ellenico si intreccia con quella della biografia del poeta-cantante americano.`,
-    image: "/images/spettacolo-placeholder.svg",
+    image: "/images/ls_urlodellafarfalla.webp",
     legacy_ref: "urlo-farfalla",
   },
   {
@@ -148,7 +148,7 @@ Descrizione in arrivo. Contattaci per maggiori informazioni su questo spettacolo
     description: `Lezione-spettacolo su Fra Pacifico e il Cantico di Frate Sole
 
 Partendo dai significati mistici, letterari e simbolici del Cantico di Frate Sole , lo spettacolo apre una suggestione sulla problematica genesi del testo, percorrendo l'ipotesi secondo la quale un ruolo determinante, nella composizione del Cantico, possa essere stato svolto dal trobadore ascolano Guglielmo Divini, noto come “Rex Versuum”, il quale divenne, nella seconda parte della sua esistenza, uno dei più stretti compagni di Francesco assumendo il nome di Frate Pacifico. Lo spettacolo esplora e racconta, tra storia e fantasia, la vita di Pacifico/Guglielmo, ripercorrendone le tracce e osservando, tra le righe, il messaggio francescano inteso non come mera rinuncia alla vita, ma come massima scoperta di essa. La figura di Francesco e il senso del Cantico narrati nel monologo si mescolano così alla trama fiabesca e affascinante di questo poeta marchigiano. Mescolando naturalmente i registri del teatro letterario di narrazione e della stand-up comedy, questo monologo, partendo dalle Fonti Francescane, conduce il pubblico a un viaggio affascinante e romantico nella vita incredibile di Pacifico, rivelando uno squarcio su un momento fondamentale della storia culturale dell'Europa. Lo spettacolo è accompagnato da musiche dal vivo originali, eseguite con strumenti etnici, ispirate al racconto del monologo`,
-    image: "/images/spettacolo-placeholder.svg",
+    image: "/images/ls_tuesolelaudi.webp",
   },
   {
     id: "contro-il-morire-della-luce",
@@ -188,7 +188,7 @@ Lo spettacolo racconta le vite le opere di cinque scrittori americani del XX sec
     description: `Lezione-spettacolo su Arthur Rimbaud e Edith Piaf.
 
 La Lezione-spettacolo racconta le vite di Arthur Rimbaud e di Edith Piaf, mescolandone le vicende in una sorta di destino comune segnato dal loro essere artisti “maledetti” dalla benedizione stupenda e insopportabile del loro talento. Alternando sotrytelling, musica dal vivo e letture sceniche, lo spettacolo porta gli spettatori in un viaggio nella Francia moderna, attraverso analisi letterarie, canti a cappella, approfondimenti filosofici e spunti di stand-up comedy`,
-    image: "/images/spettacolo-placeholder.svg",
+    image: "/images/ls_rienderien.webp",
     legacy_ref: "rien-de-rien",
   },
   {
