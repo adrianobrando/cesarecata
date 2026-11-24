@@ -44,7 +44,7 @@ async function SearchResults({ searchParams }: { searchParams: SearchParams }) {
           <ul className="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {items.map((item) => (
               <li key={item.id}>
-                <article className="flex h-full flex-col rounded-2xl border border-light-blue bg-white p-6 shadow-sm">
+                <article className="flex h-full flex-col bg-white p-6">
                   <h3 className="font-display text-xl font-semibold text-dark-blue">{item.title}</h3>
                   {item.subtitle && <p className="mt-3 font-semibold text-dark-blue">{item.subtitle}</p>}
                   <p className={`${item.subtitle ? "mt-4" : "mt-3"} line-clamp-4 text-slate-700`}>{item.description}</p>
@@ -65,7 +65,7 @@ export default function CercaPage({ searchParams }: { searchParams: SearchParams
   return (
     <main>
       <Hero title="Cerca" />
-      <section className="mx-auto min-h-[50vh] max-w-screen-2xl px-5 py-12 sm:px-6 sm:py-16">
+      <section className="mx-auto min-h-[50vh] max-w-[1200px] px-5 pb-20 sm:px-8 sm:pb-28">
         <Suspense fallback={<p className="mt-6">Caricamento dei risultati...</p>}>
           <SearchResults searchParams={searchParams} />
         </Suspense>

@@ -4,9 +4,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        "primary-blue": "#1e3a8a",
-        "light-blue": "#dbeafe",
-        "dark-blue": "#0f172a",
+        "primary-blue": "#174e70",
+        "light-blue": "#d8eaf3",
+        "dark-blue": "#102b42",
       },
       fontFamily: {
         sans: ["var(--font-dm-sans)", "sans-serif"],

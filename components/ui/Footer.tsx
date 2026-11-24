@@ -44,10 +44,10 @@ const socialIcons = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-light-blue bg-white">
-      <div className="mx-auto grid max-w-screen-2xl gap-10 px-5 py-14 sm:px-6 md:grid-cols-4">
+    <footer className="border-t border-light-blue bg-[#e8f3f8]">
+      <div className="mx-auto grid max-w-[1200px] gap-10 px-5 py-16 sm:px-8 md:grid-cols-4">
         <div>
-          <Link href="/" className="rounded font-display text-3xl font-semibold text-primary-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue">
+          <Link href="/" className="font-display text-3xl font-normal text-dark-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue">
             Cesare Catà
           </Link>
           <ul aria-label="Social, collegamenti non ancora disponibili" className="mt-6 flex gap-4 text-primary-blue">
@@ -64,11 +64,11 @@ export default function Footer() {
         </div>
         {columns.map(({ title, links }) => (
           <nav key={title} aria-label={title}>
-            <h2 className="font-sans text-sm font-semibold uppercase tracking-wide text-dark-blue">{title}</h2>
+            <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-dark-blue">{title}</h2>
             <ul className="mt-5 space-y-3">
               {links.map(({ label, href }) => (
                 <li key={href}>
-                  <Link href={href} className="rounded text-sm text-slate-600 hover:text-primary-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue">
+                  <Link href={href} className="text-base text-slate-700 underline-offset-4 hover:text-primary-blue hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue">
                     {label}
                   </Link>
                 </li>

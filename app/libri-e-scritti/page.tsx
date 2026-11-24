@@ -72,8 +72,8 @@ function PublicationSection({ title, items, visibleCount }: PublicationSectionPr
   const hiddenItems = items.slice(visibleCount);
 
   return (
-    <article className="flex h-full flex-col rounded-2xl border border-light-blue bg-light-blue/50 p-6 sm:p-8">
-      <h2 className="font-display text-2xl font-bold text-dark-blue">{title}</h2>
+    <article className="flex h-full flex-col bg-white p-6 sm:p-8">
+      <h2 className="font-display text-3xl font-normal text-dark-blue">{title}</h2>
       <ol className="mt-5 list-decimal space-y-3 pl-5 text-slate-700">
         {visibleItems.map((item) => <li key={item}>{item}</li>)}
       </ol>
@@ -95,9 +95,9 @@ export default function LibriEScrittiPage() {
   return (
     <main>
       <Hero title="Libri e Scritti" />
-      <section aria-label="Libri e Scritti" className="mx-auto max-w-screen-2xl px-5 py-12 sm:px-6 sm:py-16">
+      <section aria-label="Libri e Scritti" className="mx-auto max-w-[1200px] px-5 pb-20 sm:px-8 sm:pb-28">
         <BooksCarousel books={libriRecenti} />
-        <section aria-label="Altri scritti" className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <section aria-label="Altri scritti" className="mt-20 grid grid-cols-1 gap-8 lg:grid-cols-2">
           <PublicationSection title="Curatele e Traduzioni" items={curatele} visibleCount={curatele.length} />
           <PublicationSection title="Articoli Accademici" items={articoliAccademici} visibleCount={3} />
         </section>

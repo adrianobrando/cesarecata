@@ -37,24 +37,24 @@ async function ShowGrid({ start, page }: { start: number; page: number }) {
         </p>
       )}
       <div key={page} className="animated-grid">
-        <ul className="grid grid-cols-1 gap-6 md:grid-cols-3 xl:grid-cols-6">
+        <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {spettacoli.slice(start, start + ITEMS_PER_PAGE).map((show) => {
             const dateCount = getShowDateCount(counts, show);
             const [subtitle, ...descriptionParts] = show.description.split(/\n\s*\n/);
             const description = descriptionParts.join("\n\n").trim();
             return (
               <li key={show.id}>
-                <article className="relative h-full overflow-hidden rounded-2xl border border-light-blue bg-white shadow-sm">
+                <article className="relative h-full overflow-hidden bg-white">
                   <div className="relative aspect-[3/2] bg-light-blue">
                     <Image src={show.image} alt="" fill sizes="(min-width: 1280px) 17vw, (min-width: 768px) 33vw, 100vw" className="object-cover" />
                   </div>
                   {dateCount > 0 && (
-                    <Link href="/calendario" aria-label={`${formatShowDates(dateCount)} per ${show.title}: vai al calendario`} className="absolute right-3 top-3 rounded-full bg-primary-blue px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-dark-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue">
+                    <Link href="/calendario" aria-label={`${formatShowDates(dateCount)} per ${show.title}: vai al calendario`} className="absolute right-3 top-3 bg-primary-blue px-4 py-2 text-sm font-semibold text-white hover:bg-dark-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue">
                       {formatShowDates(dateCount)}
                     </Link>
                   )}
                   <div className="p-6">
-                    <h2 className="font-display text-2xl font-semibold text-dark-blue">{show.title}</h2>
+                    <h2 className="font-display text-3xl font-normal text-dark-blue">{show.title}</h2>
                     <p className="mt-3 font-semibold text-dark-blue">{subtitle}</p>
                     <p className="mt-4 line-clamp-4 text-slate-700">{description}</p>
                     <Link href={`/lezioni-spettacolo/${show.id}`} className="mt-4 inline-block rounded font-semibold text-primary-blue hover:text-dark-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue">
@@ -80,7 +80,7 @@ export default async function LezioniSpettacoloPage({
   return (
     <main>
       <Hero title="Lezioni-Spettacolo" />
-      <section aria-label="Lezioni-Spettacolo" className="mx-auto max-w-screen-2xl px-5 py-12 sm:px-6 sm:py-16">
+      <section aria-label="Lezioni-Spettacolo" className="mx-auto max-w-[1200px] px-5 pb-20 sm:px-8 sm:pb-28">
         <AnimatedGrid page={page}>
           <Suspense fallback={<p>Caricamento degli spettacoli...</p>}>
             <ShowGrid start={start} page={page} />

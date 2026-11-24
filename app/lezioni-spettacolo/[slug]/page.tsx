@@ -40,7 +40,7 @@ async function UpcomingDates({ show }: { show: Spettacolo }) {
       <h2 id="upcoming-dates" className="font-display text-3xl font-semibold text-dark-blue">Prossime Date</h2>
       <ul className="mt-5 space-y-4">
         {events.map((event) => (
-          <li key={event.id} className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-light-blue bg-white p-5">
+          <li key={event.id} className="flex flex-wrap items-center justify-between gap-4 bg-white p-5">
             <p className="font-semibold text-dark-blue">
               <time dateTime={event.event_date}>{formatDate(event.event_date)}</time>
               {event.location && <> - {event.location}</>}

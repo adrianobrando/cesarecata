@@ -52,7 +52,8 @@ export default function BooksCarousel({ books }: { books: Libro[] }) {
       viewport.getBoundingClientRect().left +
       viewport.scrollLeft;
     setActivePage(pageIndex);
-    viewport.scrollTo({ left, behavior: "smooth" });
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    viewport.scrollTo({ left, behavior: reducedMotion ? "instant" : "smooth" });
   }
 
   function updateActivePage() {
@@ -90,7 +91,7 @@ export default function BooksCarousel({ books }: { books: Libro[] }) {
               id={libro.id}
               className="scroll-mt-24"
             >
-              <article className="relative flex h-full min-h-72 overflow-hidden rounded-2xl border border-light-blue bg-white shadow-sm sm:min-h-80">
+              <article className="relative flex h-full min-h-72 overflow-hidden bg-white sm:min-h-80">
                 <div className="relative aspect-[3/4] w-[34%] shrink-0 bg-light-blue sm:w-[38%]">
                   <Image
                     src={libro.image}
@@ -101,7 +102,7 @@ export default function BooksCarousel({ books }: { books: Libro[] }) {
                   />
                 </div>
                 <div className="flex min-w-0 flex-1 flex-col items-start p-4 sm:p-6">
-                  <h2 className="font-display text-lg font-bold text-dark-blue sm:text-xl">
+                  <h2 className="font-display text-xl font-normal leading-tight text-dark-blue sm:text-2xl">
                     {libro.title}
                   </h2>
                   <p className="mt-2 text-sm font-medium text-slate-600">
@@ -129,7 +130,7 @@ export default function BooksCarousel({ books }: { books: Libro[] }) {
                   aria-label={`Vai alla pagina ${index + 1}`}
                   aria-current={activePage === index ? "page" : undefined}
                   onClick={() => goToPage(index)}
-                  className={`min-h-10 min-w-10 rounded-lg border px-3 py-2 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue ${
+                  className={`min-h-11 min-w-11 border px-3 py-2 text-sm font-semibold transition-colors motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue ${
                     activePage === index
                       ? "border-primary-blue bg-primary-blue text-white"
                       : "border-light-blue bg-white text-dark-blue hover:bg-light-blue"

@@ -40,10 +40,10 @@ export default function HomeSections() {
       <section
         id="bio"
         aria-labelledby="home-bio-title"
-        className="mx-auto grid max-w-screen-2xl items-center gap-8 px-5 py-14 sm:px-6 sm:py-16 lg:grid-cols-2 lg:gap-14"
+        className="mx-auto grid max-w-[1200px] items-center gap-10 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20"
       >
-        <div>
-          <h2 id="home-bio-title" className="font-display text-3xl font-semibold text-dark-blue sm:text-4xl">
+        <div className="lg:order-2">
+          <h2 id="home-bio-title" className="font-display text-4xl font-normal text-dark-blue sm:text-5xl">
             Bio
           </h2>
           <p className="mt-4 leading-relaxed text-slate-700">
@@ -77,12 +77,12 @@ export default function HomeSections() {
           width={768}
           height={960}
           sizes="(min-width: 1024px) 50vw, 100vw"
-          className="h-auto w-full rounded-2xl"
+          className="h-auto w-full lg:order-1"
         />
       </section>
 
-      <section aria-labelledby="home-shows-title" className="px-5 py-4 sm:px-6 sm:py-6">
-        <div className="relative mx-auto min-h-[26rem] max-w-screen-2xl overflow-hidden rounded-2xl bg-dark-blue sm:min-h-[30rem]">
+      <section aria-labelledby="home-shows-title" className="px-5 py-4 sm:px-8 sm:py-6">
+        <div className="relative mx-auto min-h-[26rem] max-w-[1200px] overflow-hidden bg-dark-blue sm:min-h-[30rem]">
           <Image
             src="/images/pic-shakespeareonthebeach_1.jpg"
             alt=""
@@ -90,9 +90,9 @@ export default function HomeSections() {
             sizes="(min-width: 1536px) 1536px, 100vw"
             className="object-cover"
           />
-          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-dark-blue/90 via-dark-blue/60 to-dark-blue/25" />
+          <div aria-hidden="true" className="absolute inset-0 bg-dark-blue/75" />
           <div className="relative mx-auto flex min-h-[26rem] max-w-4xl flex-col items-center justify-center px-6 py-16 text-center text-white sm:min-h-[30rem]">
-            <h2 id="home-shows-title" className="font-display text-3xl font-semibold sm:text-5xl">
+            <h2 id="home-shows-title" className="font-display text-4xl font-normal sm:text-5xl">
               Lezioni-Spettacolo
             </h2>
             <p className="mt-4 text-lg leading-relaxed sm:text-xl">
@@ -104,6 +104,7 @@ export default function HomeSections() {
               <Button href="/lezioni-spettacolo">Tutti gli eventi</Button>
               <Button
                 href="/calendario"
+                variant="secondary"
                 className="border-white bg-white text-dark-blue hover:bg-light-blue"
               >
                 Scopri il calendario
@@ -115,20 +116,20 @@ export default function HomeSections() {
 
       <section
         aria-label="Corsi e viaggi letterari"
-        className="mx-auto grid max-w-screen-2xl gap-6 px-5 py-10 sm:px-6 sm:py-14 lg:grid-cols-2"
+        className="mx-auto grid max-w-[1200px] gap-8 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-2"
       >
         {programs.map(({ title, description }) => (
           <article
             key={title}
-            className="relative flex min-h-[26rem] items-end overflow-hidden rounded-2xl bg-dark-blue shadow-sm sm:min-h-[30rem]"
+            className="relative flex min-h-[26rem] items-end overflow-hidden bg-dark-blue sm:min-h-[30rem]"
           >
             <ImagePlaceholder className="absolute inset-0" />
             <div
               aria-hidden="true"
-              className="absolute inset-0 bg-gradient-to-t from-dark-blue/90 via-dark-blue/60 to-dark-blue/25"
+              className="absolute inset-0 bg-dark-blue/75"
             />
             <div className="relative p-6 text-white sm:p-8">
-              <h2 className="font-display text-2xl font-semibold sm:text-3xl">
+              <h2 className="font-display text-3xl font-normal sm:text-4xl">
                 {title}
               </h2>
               <p className="mt-3 leading-relaxed">{description}</p>

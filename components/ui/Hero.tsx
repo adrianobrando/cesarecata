@@ -23,10 +23,12 @@ export default function Hero({ title, subtitle, breadcrumbs, videoUrl, home = fa
 
   return (
     <section
-      className={`relative -mt-20 flex items-center bg-dark-blue bg-cover bg-center px-5 pb-12 pt-32 text-left text-white sm:px-6 ${
-        home ? "min-h-[80vh]" : "min-h-[58vh] sm:min-h-[62vh]"
+      className={`relative flex items-center px-5 sm:px-8 ${
+        home
+          ? "-mt-20 min-h-[70vh] bg-dark-blue bg-cover bg-center pb-20 pt-40 text-white"
+          : "pb-14 pt-16 text-dark-blue sm:pb-20 sm:pt-24"
       }`}
-      style={{ backgroundImage: 'url("/images/bg_cesare-header1.jpg")' }}
+      style={home ? { backgroundImage: 'url("/images/bg_cesare-header1.jpg")' } : undefined}
     >
       {videoUrl && (
         <video
@@ -41,14 +43,14 @@ export default function Hero({ title, subtitle, breadcrumbs, videoUrl, home = fa
           className="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
         />
       )}
-      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/55" />
-      <div className="relative mx-auto w-full max-w-screen-2xl">
-        <h1 className="font-display text-5xl font-semibold leading-tight sm:text-6xl lg:text-7xl">
+      {home && <div aria-hidden="true" className="absolute inset-0 bg-[#102b42]/70" />}
+      <div className={`relative mx-auto w-full max-w-[1200px] ${home ? "" : "text-center"}`}>
+        <h1 className={`font-display font-normal leading-[1.05] ${home ? "max-w-4xl text-5xl sm:text-6xl lg:text-7xl" : "text-5xl sm:text-6xl lg:text-7xl"}`}>
           {title}
         </h1>
-        {breadcrumbItems.length > 0 && <Breadcrumb items={breadcrumbItems} />}
+        {breadcrumbItems.length > 0 && <Breadcrumb items={breadcrumbItems} variant={home ? "light" : "dark"} />}
         {subtitle && (
-          <h2 className="mt-5 max-w-3xl text-xl font-medium leading-relaxed sm:text-2xl">
+          <h2 className={`mt-6 max-w-3xl text-xl font-normal leading-relaxed sm:text-2xl ${home ? "" : "mx-auto"}`}>
             {subtitle}
           </h2>
         )}

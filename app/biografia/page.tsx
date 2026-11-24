@@ -14,7 +14,7 @@ export default function BiografiaPage() {
   return (
     <main>
       <Hero title="Biografia" />
-      <section className="mx-auto max-w-screen-xl px-5 py-12 sm:px-6 sm:py-16">
+      <section className="mx-auto max-w-[1200px] px-5 pb-20 sm:px-8 sm:pb-28">
         <div className="grid gap-14 lg:grid-cols-[minmax(0,1.5fr)_minmax(18rem,0.8fr)]">
           <div className="space-y-12">
             <section aria-labelledby="profilo-title">
@@ -40,7 +40,7 @@ export default function BiografiaPage() {
                 width={1152}
                 height={768}
                 sizes="(min-width: 1024px) 60vw, 100vw"
-                className="mt-8 h-auto w-full rounded-2xl"
+                className="mt-8 h-auto w-full"
               />
             </section>
 
@@ -104,7 +104,7 @@ export default function BiografiaPage() {
           </div>
 
           <aside className="space-y-10">
-            <section aria-labelledby="pubblicazioni-title" className="rounded-2xl bg-light-blue/50 p-6 sm:p-8">
+            <section aria-labelledby="pubblicazioni-title" className="bg-white p-6 sm:p-8">
               <h2 id="pubblicazioni-title" className="font-display text-2xl font-semibold text-dark-blue">
                 Tra le ultime pubblicazioni
               </h2>
@@ -126,7 +126,7 @@ export default function BiografiaPage() {
               width={641}
               height={960}
               sizes="(min-width: 1024px) 35vw, 100vw"
-              className="h-auto w-full rounded-2xl"
+              className="h-auto w-full"
             />
 
             <section aria-labelledby="articoli-title">

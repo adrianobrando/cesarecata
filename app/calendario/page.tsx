@@ -53,7 +53,7 @@ async function EventList({ months }: { months: string[] }) {
   return (
     <>
       {events.length === 0 && (
-        <p className="rounded-2xl border border-light-blue bg-white px-6 py-6 text-center text-lg text-dark-blue">
+        <p className="bg-white px-6 py-6 text-center text-lg text-dark-blue">
           Nessun evento in questo periodo. Usa le frecce per cercare in altri mesi.
         </p>
       )}
@@ -63,12 +63,12 @@ async function EventList({ months }: { months: string[] }) {
             {formatMonth(month)}
           </h2>
           {monthEvents.length === 0 ? (
-            <p className="text-slate-500">Nessun evento in programma per questo mese</p>
+            <p className="text-slate-700">Nessun evento in programma per questo mese</p>
           ) : (
             <ul className="space-y-6">
               {monthEvents.map((event) => (
                 <li key={event.id}>
-                  <article className="overflow-hidden rounded-2xl border border-light-blue bg-white shadow-sm sm:flex">
+                  <article className="overflow-hidden bg-white sm:flex">
                     {event.image_url && (
                       <div className="relative aspect-[16/10] w-full shrink-0 bg-light-blue sm:aspect-auto sm:w-2/5">
                         <Image
