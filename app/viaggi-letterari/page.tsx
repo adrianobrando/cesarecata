@@ -5,29 +5,29 @@ import Hero from "@/components/ui/Hero";
 const viaggi = [
   {
     title: "L’Irlanda di Yeats e delle Fate",
-    image: "/images/viaggio-placeholder-irlanda.svg",
-    imageAlt: "Immagine segnaposto: le verdi colline dell’Irlanda occidentale",
+    image: "/images/viaggio-irlanda.webp",
+    imageAlt: "Veduta aerea della costa del Connemara in Irlanda",
     description:
       "Da Sligo al Connemara, un percorso unico nell’Ovest irlandese, fuori dalle rotte più turistiche. Alla scoperta della terra più magica d’Europa attraverso l’opera di Yeats, dei grandi autori dell’Isola e delle sue antichissime leggende, fitte di Fate, Leprechaun e Banshee.",
   },
   {
     title: "La Grecia di Omero e degli Eroi",
-    image: "/images/viaggio-placeholder-grecia.svg",
-    imageAlt: "Immagine segnaposto: un’isola greca affacciata sul mare",
+    image: "/images/viaggio-grecia.webp",
+    imageAlt: "Spiaggia e scogliere affacciate sul mare turchese di Lefkada",
     description:
       "Partendo dall’isola di Lefkada, un viaggio nella bellezza della Grecia contemporanea per scoprire quella antica attraverso i versi omerici e le storie degli Eroi, narrate nei luoghi stessi che le ispirarono.",
   },
   {
     title: "Il Tirolo di Elisabetta e del Romanticismo",
-    image: "/images/viaggio-placeholder-tirolo.svg",
-    imageAlt: "Immagine segnaposto: le montagne e un villaggio del Tirolo",
+    image: "/images/viaggio-tirolo.webp",
+    imageAlt: "Valle di Merano circondata dalle montagne",
     description:
       "Un tour speciale che, partendo da Merano e dalle sue meraviglie, esplora il senso del Romanticismo tedesco attraverso la vita di Elisabetta di Baviera. Un percorso letterario tra gli incanti del mondo della montagna tirolese.",
   },
   {
     title: "L’Inghilterra di Shakespeare e dei grandi scrittori",
-    image: "/images/viaggio-placeholder-inghilterra.svg",
-    imageAlt: "Immagine segnaposto: un villaggio tra le colline inglesi",
+    image: "/images/viaggio-inghilterra.webp",
+    imageAlt: "Tower Bridge sul Tamigi a Londra",
     description:
       "Partendo da Stratford-upon-Avon e spostandosi tra i Cotswolds e Oxford, il viaggio propone un percorso sulle orme di Shakespeare, Virginia Woolf, Jane Austen e Tolkien, tra le grandi pagine di autori memorabili e gli incanti della campagna inglese.",
   },

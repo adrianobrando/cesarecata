@@ -69,31 +69,37 @@ async function EventList({ months }: { months: string[] }) {
             <ul className="space-y-6">
               {monthEvents.map((event) => (
                 <li key={event.id} id={`evento-${event.id}`} className="scroll-mt-24">
-                  <article className="overflow-hidden bg-white sm:flex">
-                    {event.image_url && (
-                      <div className="relative aspect-[16/10] w-full shrink-0 bg-light-blue sm:aspect-auto sm:w-2/5">
-                        <Image
-                          src={event.image_url}
-                          alt=""
-                          fill
-                          unoptimized
-                          sizes="(min-width: 640px) 40vw, 100vw"
-                          className="object-cover"
-                        />
-                      </div>
-                    )}
-                    <div className="flex flex-1 flex-col items-start p-6 sm:p-8">
-                      <EventDateLocation event={event} />
-                      <h3 className="mt-3 font-display text-3xl font-semibold text-dark-blue">
-                        {event.title}
-                      </h3>
-                      <p className="mt-2 text-lg text-slate-700">{event.subtitle}</p>
-                      {event.performers && (
-                        <p className="mt-4 text-slate-600">{event.performers}</p>
+                  <article className="grid gap-4 overflow-hidden bg-white p-4 sm:p-5 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)_minmax(0,0.9fr)] lg:items-center lg:gap-6">
+                    <div className="flex min-w-0 flex-col gap-3 lg:flex-row lg:items-center">
+                      {event.image_url && (
+                        <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded-lg bg-light-blue lg:aspect-square lg:w-24">
+                          <Image
+                            src={event.image_url}
+                            alt=""
+                            fill
+                            unoptimized
+                            sizes="(min-width: 1024px) 6rem, 100vw"
+                            className="object-cover"
+                          />
+                        </div>
                       )}
-                      <div className="mt-6">
-                        <EventEntry event={event} />
+                      <div className="min-w-0">
+                        <h3 className="font-display text-xl font-semibold leading-tight text-dark-blue sm:text-2xl lg:text-xl">
+                          {event.title}
+                        </h3>
+                        <p className="mt-1 text-sm leading-snug text-slate-700 sm:text-base lg:text-sm">
+                          {event.subtitle}
+                        </p>
+                        {event.performers && (
+                          <p className="mt-2 text-xs leading-snug text-slate-600 sm:text-sm">{event.performers}</p>
+                        )}
                       </div>
+                    </div>
+                    <div className="min-w-0">
+                      <EventDateLocation event={event} compact />
+                    </div>
+                    <div>
+                      <EventEntry event={event} compact />
                     </div>
                   </article>
                 </li>
@@ -127,22 +133,19 @@ async function CalendarContent({ searchParams }: { searchParams: Promise<{ mese?
 
   return (
     <>
-      <nav aria-label="Navigazione del calendario" className="mb-10 flex flex-wrap items-center justify-between gap-4">
+      <EventList months={months} />
+      <nav aria-label="Navigazione del calendario" className="mt-10 flex flex-wrap items-center justify-center gap-4">
         {isCalendarMonth(previous) ? (
           <Button variant="secondary" href={`/calendario?mese=${previous}`}>← 3 Mesi Precedenti</Button>
         ) : (
           <Button variant="secondary" disabled>← 3 Mesi Precedenti</Button>
         )}
-        <p className="font-display text-center text-xl font-semibold text-dark-blue">
-          Da {formatMonth(months[0])} a {formatMonth(months[2])}
-        </p>
         {isCalendarMonth(next) ? (
           <Button variant="secondary" href={`/calendario?mese=${next}`}>3 Mesi Successivi →</Button>
         ) : (
           <Button variant="secondary" disabled>3 Mesi Successivi →</Button>
         )}
       </nav>
-      <EventList months={months} />
     </>
   );
 }
@@ -152,7 +155,7 @@ export default function CalendarioPage({ searchParams }: { searchParams: Promise
     <main>
       <Hero
         title="Calendario spettacoli"
-        subtitle="Scopri i prossimi appuntamenti e vieni a trovarci a teatro."
+        subtitle="Scopri i prossimi appuntamenti"
       />
       <section aria-label="Prossimi spettacoli" className="site-container py-10 sm:py-14">
         <Suspense fallback={<p>Caricamento degli eventi...</p>}>

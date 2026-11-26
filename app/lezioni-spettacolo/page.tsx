@@ -66,9 +66,11 @@ async function ShowGrid() {
                     href={`/lezioni-spettacolo/${show.id}`}
                     className="absolute inset-0 z-10 flex items-center justify-center bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-white motion-reduce:transition-none"
                   >
-                    <span className="rounded-full bg-primary-blue px-5 py-3 text-center font-semibold text-white">
-                      Scopri di più<span className="sr-only">: {show.title}</span>
-                    </span>
+                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-10 w-10 text-white">
+                      <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
+                      <path d="m16 16 4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                    <span className="sr-only">Scopri di più: {show.title}</span>
                   </Link>
                 </article>
               </li>

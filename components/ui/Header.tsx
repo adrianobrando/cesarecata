@@ -49,7 +49,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef<HTMLDetailsElement>(null);
   const pathname = usePathname();
-  const lightText = pathname === "/" && !scrolled;
+  const lightText = !scrolled;
 
   useEffect(() => {
     if (menuRef.current) menuRef.current.open = false;
