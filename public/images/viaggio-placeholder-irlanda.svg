@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" fill="none">
+  <defs>
+    <linearGradient id="sky" x1="600" y1="0" x2="600" y2="750" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D8E9E3"/>
+      <stop offset="1" stop-color="#F3E9CE"/>
+    </linearGradient>
+    <linearGradient id="hill" x1="600" y1="320" x2="600" y2="750" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#72927B"/>
+      <stop offset="1" stop-color="#355B4A"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#sky)" d="M0 0h1200v750H0z"/>
+  <circle cx="940" cy="178" r="63" fill="#F4D6A0" opacity=".8"/>
+  <path fill="#9EB3A2" d="m0 412 176-128 158 94 204-166 188 160 148-105 326 171v312H0z"/>
+  <path fill="url(#hill)" d="M0 458c168-82 293-91 432-28 132 61 235 47 353-20 142-81 271-42 415 39v301H0z"/>
+  <path fill="#52785F" d="M0 543c170-53 290-52 435 8 153 64 292 57 429-7 125-58 227-43 336 17v189H0z"/>
+  <path stroke="#D7C9A5" stroke-width="9" d="m68 627 246-5 138 22 230-2 188 25 225-1"/>
+  <path fill="#E8DFCA" fill-opacity=".72" d="M0 0h1200v750H0z"/>
+  <text x="64" y="92" fill="#355B4A" font-family="Georgia,serif" font-size="24" letter-spacing="5">IMMAGINE PROVVISORIA</text>
+</svg>

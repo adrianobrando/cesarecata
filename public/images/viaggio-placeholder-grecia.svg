@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" fill="none">
+  <defs>
+    <linearGradient id="sky" x1="600" y1="0" x2="600" y2="750" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B9DDE9"/>
+      <stop offset="1" stop-color="#F5E4C2"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="600" y1="380" x2="600" y2="750" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4F9EB1"/>
+      <stop offset="1" stop-color="#236477"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#sky)" d="M0 0h1200v750H0z"/>
+  <circle cx="968" cy="151" r="66" fill="#F6D28F"/>
+  <path fill="#79989A" d="m0 377 180-101 149 76 189-136 193 111 169-95 320 145v159H0z"/>
+  <path fill="url(#sea)" d="M0 419h1200v331H0z"/>
+  <path fill="#F1E7D2" d="M0 515c180-25 360-24 536 0 193 26 443 23 664-3v238H0z" opacity=".16"/>
+  <path fill="#F7F1E5" d="M778 332h285v103H778z"/>
+  <path fill="#fffaf0" d="M824 256h178v76H824z"/>
+  <path fill="#547C88" d="M807 248h211l-105-108z"/>
+  <path fill="#B96750" d="M886 326h53v109h-53z"/>
+  <path fill="#F7F1E5" d="M1029 369h115v66h-115z"/>
+  <path fill="#547C88" d="m1018 369 68-62 68 62z"/>
+  <path fill="#F7F1E5" d="M669 389h100v46H669z"/>
+  <path fill="#547C88" d="m659 389 60-50 60 50z"/>
+  <text x="64" y="92" fill="#24576B" font-family="Georgia,serif" font-size="24" letter-spacing="5">IMMAGINE PROVVISORIA</text>
+</svg>
