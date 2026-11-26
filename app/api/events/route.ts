@@ -2,6 +2,7 @@ export const runtime = 'edge';
 
 import { NextRequest, NextResponse } from "next/server";
 import { isAdmin, isSameOrigin } from "@/lib/admin-auth";
+import { duplicateEventMessage } from "@/lib/event-duplicates";
 import { parseEventInput } from "@/lib/event-input";
 import { getSupabase } from "@/lib/supabase";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
@@ -26,7 +27,22 @@ export async function POST(request: NextRequest) {
   }
   const event = parseEventInput(body);
   if (!event) return NextResponse.json({ error: "Dati dell'evento non validi." }, { status: 400 });
-  const { data, error } = await getSupabaseAdmin().from("events").insert(event).select().single();
+  const supabase = getSupabaseAdmin();
+  const { data: duplicate, error: duplicateError } = await supabase
+    .from("events")
+    .select("title,event_date")
+    .eq("show_reference", event.show_reference)
+    .eq("event_date", event.event_date)
+    .limit(1)
+    .maybeSingle();
+  if (duplicateError) {
+    console.error("Errore nel controllo dei duplicati:", duplicateError);
+    return NextResponse.json({ error: "Impossibile verificare se la data è già inserita." }, { status: 500 });
+  }
+  if (duplicate) {
+    return NextResponse.json({ error: duplicateEventMessage(duplicate) }, { status: 409 });
+  }
+  const { data, error } = await supabase.from("events").insert(event).select().single();
   if (error) {
     console.error("Errore nella creazione dell'evento:", error);
     return NextResponse.json({ error: "Impossibile creare l'evento." }, { status: 500 });

@@ -239,14 +239,26 @@ export default function InserimentoSpettacoli() {
         throw new Error("Usa un file CSV o Excel .xlsx.");
       }
       const imported = parseEventRows(rows, shows);
-      const result = await api<{ count: number }>("/api/events/import", {
+      const result = await api<{ count: number; duplicates: Pick<Event, "title" | "event_date">[] }>("/api/events/import", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(imported),
       });
       setImportFile(null);
       if (importInput.current) importInput.current.value = "";
-      setNotice(`${result.count} date importate.`);
+      const importedMessage = result.count === 0
+        ? "Nessuna nuova data importata."
+        : `${result.count} ${result.count === 1 ? "data importata" : "date importate"}.`;
+      const duplicateDetails = result.duplicates.slice(0, 10)
+        .map((duplicate) => `"${duplicate.title}", ${formatDate(duplicate.event_date)}`)
+        .join("; ");
+      const moreDuplicates = result.duplicates.length > 10
+        ? `; e altre ${result.duplicates.length - 10}`
+        : "";
+      const duplicateMessage = result.duplicates.length
+        ? ` Date già inserite e non importate: ${duplicateDetails}${moreDuplicates}.`
+        : "";
+      setNotice(`${importedMessage}${duplicateMessage}`);
       await loadEvents();
     } catch (caught) {
       if (caught instanceof ApiError && caught.status === 401) setAuthenticated(false);
