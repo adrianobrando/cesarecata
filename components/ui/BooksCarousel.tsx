@@ -91,8 +91,8 @@ export default function BooksCarousel({ books }: { books: Libro[] }) {
               id={libro.id}
               className="scroll-mt-24"
             >
-              <article className="relative flex h-full gap-3 overflow-hidden bg-white p-3 sm:gap-4 sm:p-4">
-                <div className="relative aspect-[2/3] w-[34%] shrink-0 self-start overflow-hidden rounded-md bg-light-blue sm:w-[38%]">
+              <article className="relative flex h-full flex-col items-center gap-3 overflow-hidden bg-white p-3 sm:gap-4 sm:p-4 md:flex-row md:items-stretch">
+                <div className="relative aspect-[2/3] w-[44%] max-w-[190px] shrink-0 overflow-hidden rounded-md bg-light-blue md:w-[38%] md:max-w-none md:self-start">
                   <Image
                     src={libro.image}
                     alt=""
@@ -101,7 +101,7 @@ export default function BooksCarousel({ books }: { books: Libro[] }) {
                     className="object-cover"
                   />
                 </div>
-                <div className="flex min-w-0 flex-1 flex-col items-start justify-center">
+                <div className="flex w-full min-w-0 flex-1 flex-col items-start justify-center md:w-auto">
                   <h2 className="font-display text-lg font-normal leading-tight text-dark-blue">
                     {libro.title}
                   </h2>
