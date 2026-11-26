@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import Papa from "papaparse";
+import readXlsxFile from "read-excel-file";
 import Button from "@/components/ui/Button";
-import Breadcrumb from "@/components/ui/Breadcrumb";
-import { spettacoli } from "@/data/spettacoli";
+import Hero from "@/components/ui/Hero";
+import { parseEventRows, showOptions } from "@/lib/event-import";
 import { formatDate, slugify } from "@/lib/utils";
 import type { Event } from "@/types/database";
 
@@ -16,7 +18,6 @@ type EventForm = {
   entry_type: "libero" | "pagamento";
   ticket_link: string;
   show_reference: string;
-  new_show_title: string;
   image_url: string | null;
 };
 
@@ -28,13 +29,9 @@ const emptyForm: EventForm = {
   performers: "",
   entry_type: "libero",
   ticket_link: "",
-  show_reference: "rien-de-rien",
-  new_show_title: "",
+  show_reference: "",
   image_url: null,
 };
-
-const sortedShows = [...spettacoli].sort((a, b) => a.title.localeCompare(b.title, "it"));
-const knownReferences = new Set([...spettacoli.map((show) => show.id), ...spettacoli.flatMap((show) => (show.legacy_ref ? [show.legacy_ref] : []))]);
 
 const inputClass = "w-full rounded-lg border border-slate-400 bg-white px-3 py-2 text-slate-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue";
 
@@ -72,7 +69,11 @@ export default function InserimentoSpettacoli() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+  const [importOpen, setImportOpen] = useState(false);
+  const [importFile, setImportFile] = useState<File | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
+  const importInput = useRef<HTMLInputElement>(null);
+  const shows = showOptions(events ?? []);
 
   async function loadEvents() {
     setEvents(await api<Event[]>("/api/events"));
@@ -144,11 +145,13 @@ export default function InserimentoSpettacoli() {
         if (fileInput.current) fileInput.current.value = "";
       }
       const isNew = form.show_reference === "new";
-      const showReference = isNew ? slugify(form.new_show_title) : form.show_reference;
+      const showReference = isNew ? slugify(form.title) : form.show_reference;
       if (!showReference) throw new Error("Il titolo del nuovo spettacolo non è valido.");
+      if (isNew && shows.some((show) => show.reference === showReference || show.title.trim().toLocaleLowerCase("it-IT") === form.title.trim().toLocaleLowerCase("it-IT"))) {
+        throw new Error("Questo spettacolo è già in archivio o ha lo stesso riferimento di uno spettacolo esistente: selezionalo dall'elenco.");
+      }
       const payload = {
         ...form,
-        new_show_title: undefined,
         show_reference: showReference,
         event_date: new Date(form.event_date).toISOString(),
         location: form.location.trim() || null,
@@ -182,7 +185,6 @@ export default function InserimentoSpettacoli() {
       entry_type: event.entry_type,
       ticket_link: event.ticket_link ?? "",
       show_reference: event.show_reference,
-      new_show_title: "",
       image_url: event.image_url,
     });
     setEditingId(event.id);
@@ -211,16 +213,53 @@ export default function InserimentoSpettacoli() {
     }
   }
 
+  async function importEvents(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!importFile) {
+      setError("Seleziona un file CSV o Excel.");
+      return;
+    }
+    setBusy(true);
+    setError("");
+    setNotice("");
+    try {
+      if (importFile.size > 2 * 1024 * 1024) throw new Error("Il file non può superare 2 MB.");
+      let rows: (string | number | boolean | Date | null)[][];
+      if (/\.csv$/i.test(importFile.name)) {
+        const result = Papa.parse<string[]>(await importFile.text(), { skipEmptyLines: false });
+        if (result.errors.length) throw new Error(`CSV non valido: ${result.errors[0].message}`);
+        rows = result.data;
+      } else if (/\.xlsx$/i.test(importFile.name)) {
+        const excelRows = await readXlsxFile(importFile);
+        rows = excelRows.map((row) => row.map((cell) => {
+          if (cell === null || typeof cell === "string" || typeof cell === "number" || typeof cell === "boolean" || cell instanceof Date) return cell;
+          throw new Error("Il file Excel contiene un tipo di cella non supportato.");
+        }));
+      } else {
+        throw new Error("Usa un file CSV o Excel .xlsx.");
+      }
+      const imported = parseEventRows(rows, shows);
+      const result = await api<{ count: number }>("/api/events/import", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(imported),
+      });
+      setImportFile(null);
+      if (importInput.current) importInput.current.value = "";
+      setNotice(`${result.count} date importate.`);
+      await loadEvents();
+    } catch (caught) {
+      if (caught instanceof ApiError && caught.status === 401) setAuthenticated(false);
+      setError(caught instanceof Error ? caught.message : "Impossibile importare le date.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
   return (
-    <main className="site-container py-12">
-      <h1 className="text-4xl text-dark-blue">Gestione spettacoli</h1>
-      <Breadcrumb
-        variant="dark"
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Gestione spettacoli" },
-        ]}
-      />
+    <main>
+      <Hero title="Gestione spettacoli" />
+      <div className="site-container py-12">
       {error && <p role="alert" className="mb-5 rounded-lg bg-red-50 p-4 text-red-800">{error}</p>}
       {notice && <p role="status" className="mb-5 rounded-lg bg-green-50 p-4 text-green-800">{notice}</p>}
       {authenticated === null ? (
@@ -233,9 +272,27 @@ export default function InserimentoSpettacoli() {
         </form>
       ) : (
         <>
+          <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+            <h2 className="text-2xl text-dark-blue">{editingId ? "Modifica evento" : "Nuovo evento"}</h2>
+            <Button variant="secondary" disabled={busy} aria-expanded={importOpen} aria-controls="import-date" onClick={() => {
+              setImportOpen(!importOpen);
+              setImportFile(null);
+            }}>Carica nuove date</Button>
+          </div>
+          {importOpen && (
+            <form id="import-date" onSubmit={importEvents} className="mb-6 space-y-4 rounded-xl border border-slate-200 p-6">
+              <h3 className="text-xl text-dark-blue">Carica nuove date</h3>
+              <p>Carica un CSV o un file Excel .xlsx (massimo 2 MB e 500 date). L&apos;orario usa il fuso del dispositivo. Sostituisci le righe di esempio prima di importare.</p>
+              <a className="text-primary-blue underline" href="/modello-date.csv" download>Scarica il modello CSV</a>
+              <div>
+                <label className="mb-1 block font-medium" htmlFor="import-file">File CSV o Excel</label>
+                <input className={inputClass} id="import-file" type="file" accept=".csv,.xlsx" required ref={importInput} disabled={busy} onChange={(e) => setImportFile(e.target.files?.[0] ?? null)} />
+              </div>
+              <Button type="submit" disabled={busy}>{busy ? "Importazione..." : "Importa date"}</Button>
+            </form>
+          )}
           <form id="event-form" onSubmit={saveEvent} className="rounded-xl border border-slate-200 p-6">
             <fieldset disabled={busy} className="space-y-5">
-            <h2 className="text-2xl text-dark-blue">{editingId ? "Modifica evento" : "Nuovo evento"}</h2>
             <div>
               <label className="mb-1 block font-medium" htmlFor="image">Immagine (opzionale)</label>
               <input className={inputClass} id="image" type="file" accept="image/jpeg,image/png,image/webp,image/gif" ref={fileInput} onChange={(e) => setImage(e.target.files?.[0] ?? null)} />
@@ -254,7 +311,28 @@ export default function InserimentoSpettacoli() {
             </div>
             <div>
               <label className="mb-1 block font-medium" htmlFor="title">Titolo</label>
-              <input className={inputClass} id="title" required value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
+              <div className="flex flex-wrap items-start gap-3">
+                <div className="min-w-0 flex-1 basis-64">
+                  {form.show_reference === "new" ? (
+                    <input className={inputClass} id="title" required value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
+                  ) : (
+                    <select className={inputClass} id="title" required value={form.show_reference} onChange={(e) => {
+                      const show = shows.find((item) => item.reference === e.target.value);
+                      setForm({ ...form, show_reference: e.target.value, title: show?.title ?? "", subtitle: show?.subtitle ?? "" });
+                    }}>
+                      <option value="">Seleziona uno spettacolo</option>
+                      {shows.map((show) => <option key={show.reference} value={show.reference}>{show.title}</option>)}
+                      {form.show_reference && !shows.some((show) => show.reference === form.show_reference) && (
+                        <option value={form.show_reference}>{form.title} (riferimento precedente)</option>
+                      )}
+                    </select>
+                  )}
+                </div>
+                <Button variant="secondary" onClick={() => setForm({ ...form, show_reference: form.show_reference === "new" ? "" : "new", title: "", subtitle: "" })}>
+                  {form.show_reference === "new" ? "Scegli dall'archivio" : "Aggiungi nuovo spettacolo"}
+                </Button>
+              </div>
+              {form.show_reference === "new" && <p className="mt-1 text-sm">Il nuovo titolo sarà disponibile per le date successive. Per pubblicare una scheda dedicata occorre aggiungerlo all&apos;archivio statico.</p>}
             </div>
             <div>
               <label className="mb-1 block font-medium" htmlFor="subtitle">Sottotitolo</label>
@@ -275,24 +353,6 @@ export default function InserimentoSpettacoli() {
               <div>
                 <label className="mb-1 block font-medium" htmlFor="ticket-link">Link prevendita</label>
                 <input className={inputClass} id="ticket-link" type="url" value={form.ticket_link} onChange={(e) => setForm({ ...form, ticket_link: e.target.value })} />
-              </div>
-            )}
-            <div>
-              <label className="mb-1 block font-medium" htmlFor="show-reference">Spettacolo</label>
-              <select className={inputClass} id="show-reference" value={form.show_reference} onChange={(e) => setForm({ ...form, show_reference: e.target.value })}>
-                {sortedShows.map((show) => <option key={show.id} value={show.id}>{show.title}</option>)}
-                {spettacoli.filter((show) => show.legacy_ref && show.legacy_ref !== show.id).map((show) => (
-                  <option key={show.legacy_ref} value={show.legacy_ref}>{show.title} (riferimento precedente)</option>
-                ))}
-                {form.show_reference !== "new" && !knownReferences.has(form.show_reference) && <option value={form.show_reference}>{form.show_reference} (non in archivio)</option>}
-                <option value="new">➕ Aggiungi un nuovo spettacolo...</option>
-              </select>
-              <p className="mt-1 text-sm">Se lo spettacolo non è in elenco, seleziona &apos;Aggiungi un nuovo spettacolo&apos;. Ricordati poi di aggiungerlo anche all&apos;archivio statico nel codice per farlo comparire nella pagina Lezioni-Spettacolo.</p>
-            </div>
-            {form.show_reference === "new" && (
-              <div>
-                <label className="mb-1 block font-medium" htmlFor="new-show-title">Titolo del nuovo spettacolo</label>
-                <input className={inputClass} id="new-show-title" required value={form.new_show_title} onChange={(e) => setForm({ ...form, new_show_title: e.target.value })} />
               </div>
             )}
             <div className="flex flex-wrap gap-3">
@@ -323,6 +383,7 @@ export default function InserimentoSpettacoli() {
           </section>
         </>
       )}
+      </div>
     </main>
   );
 }

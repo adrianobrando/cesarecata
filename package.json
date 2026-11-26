@@ -12,8 +12,10 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.119.0",
     "next": "15.5.2",
+    "papaparse": "^5.5.3",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "read-excel-file": "^6.0.0"
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.13.16",
@@ -21,6 +23,7 @@
     "@tailwindcss/postcss": "4.3.3",
     "@tailwindcss/turbopack": "4.3.3",
     "@types/node": "^20",
+    "@types/papaparse": "^5.3.16",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

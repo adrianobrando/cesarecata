@@ -96,6 +96,22 @@ i badge comprendono le date associate allo slug o al relativo `legacy_ref`
 e collegano alla prima data futura nel calendario. La gestione eventi accetta entrambi i riferimenti; le
 righe esistenti non vengono migrate automaticamente.
 
+Nel modulo eventi, seleziona un titolo per compilare il sottotitolo
+dall'archivio oppure usa «Aggiungi nuovo spettacolo». I nuovi titoli restano
+disponibili finché esiste almeno un evento associato; per pubblicare la scheda
+nella pagina Lezioni-Spettacolo occorre aggiungerli all'archivio statico.
+
+«Carica nuove date» importa fino a 500 righe da CSV o Excel `.xlsx` (massimo
+2 MB), usando il primo foglio. Scarica il modello dal modulo e sostituisci le
+righe di esempio: vengono importate come qualsiasi altra riga. Mantieni le
+intestazioni del modello: `titolo`, `sottotitolo`, `data`, `ora`, `luogo`,
+`attori`, `ingresso`, `link_prevendita`. Titolo, data (`AAAA-MM-GG`) e ora
+(`HH:MM`) sono obbligatori; il sottotitolo è obbligatorio per i titoli non
+presenti nell'archivio. Le celle data e ora formattate da Excel sono accettate.
+L'ingresso è `libero` (predefinito) o `pagamento`; il link è facoltativo e
+deve essere HTTP/HTTPS. Gli orari usano il fuso del dispositivo. Un errore
+blocca l'intero import senza salvare date; controlla i dati prima di riprovare.
+
 ## Componenti UI
 
 Usa `.site-container` per allineare orizzontalmente header, sezioni delle pagine
@@ -103,9 +119,10 @@ e footer. La classe definisce una larghezza massima di 1400 px e padding
 responsive condivisi.
 
 `components/ui` contiene `Button`, utilizzabile come pulsante o link tramite
-`href`, e `Hero`, configurabile con `title`, `subtitle` opzionale, `bgImage` e
-`videoUrl` opzionale. L'immagine resta il fallback per il video e per chi
-preferisce ridurre le animazioni.
+`href`, e `Hero`, configurabile con `title`, `subtitle`, `breadcrumbs`, `home`,
+`videoUrl` e `cta`. Nelle pagine interne la hero usa l'immagine condivisa
+`public/images/bg_cesare-header1.webp`, sfumata verso il basso con una maschera
+CSS. In homepage viene usato il video, con l'immagine come fallback.
 `Header` e `Footer` sono inclusi nel layout globale. Le icone social nel footer
 sono segnaposto senza collegamenti finché non vengono forniti gli indirizzi.
 I link di navigazione indicano percorsi previsti, alcune delle cui pagine devono
