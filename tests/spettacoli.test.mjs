@@ -30,14 +30,22 @@ test("l'archivio conserva tutti i testi, incluso lo spettacolo non numerato", as
 
 test("le immagini disponibili sono associate agli spettacoli corretti", async () => {
   const images = {
+    "odissea-juke-box": "ls_odisseajukebox.webp",
     "se-giasone-fosse-rimasto-single": "ls_giasonefosserimastosingle.webp",
     "shakespeare-juke-box": "ls_shakspearejukebox.webp",
     "ginevra-ne-vale-la-pena": "ls_ginevranevalelapena.webp",
+    "orfeo-le-selkies-e-mi-nonnu": "ls_orfeo.webp",
     "fate-caprine-cavalieri-erranti": "ls_fatecaprineecavalierierranti.webp",
+    "se-sei-perseo": "ls_seseiperseo.webp",
     "il-labirinto-e-l-abbandono": "ls_labirintoeabbandono.webp",
     "l-urlo-della-farfalla": "ls_urlodellafarfalla.webp",
+    "la-vuota-corona": "ls_lavuotacorona.webp",
+    "le-streghe-e-il-destino": "ls_stregheedestino.webp",
     "tue-so-le-laudi": "ls_tuesolelaudi.webp",
+    "la-vita-invisibile": "ls_irlandaevitainvisibile.webp",
+    "la-musa-nel-bicchiere": "ls_lamusanelbicchiere.webp",
     "rien-de-rien": "ls_rienderien.webp",
+    "la-geniale-cortigiana": "ls_lagenialecortigiana.webp",
   };
   for (const show of spettacoli) {
     const expected = images[show.id] ?? "spettacolo-placeholder.svg";

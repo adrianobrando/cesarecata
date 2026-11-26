@@ -13,7 +13,7 @@ export const spettacoli: Spettacolo[] = [
     description: `Lezione-spettacolo interattiva sul poema omerico.
 
 Lo spettacolo invita gli spettatori a una riscoperta originale del poema omerico, raccontato nei suoi significati simbolici e filosofici in un'alternanza di storytelling e letture sceniche. Temi letterari e mitologici si alternano naturalmente a spunti di stand-up comedy, mescolando registri linguistici e toni teatrali differenti. Il monologo si svolge in maniera interattiva con il pubblico: attraverso una vela-mappa dove sono rappresentate le diverse tappe del percorso di Odisseo e un pallino raffigurante l'eroe stesso, sono i lanci degli spettatori a determinare il cammino, differente ogni volta, del protagonista nel suo ritorno a Itaca. Particolare attenzione è riservata alle figure femminili della storia – Penelope, Circe, Calypso, Nausicaa, Anticlea – ognuna delle quali incarna una tappa del viaggio dell'eroe e uno stadio del suo sviluppo evolutivo. Le avventure di Odisseo sono narrate attraverso i paradossi, le ansie e le caratteristiche del mondo contemporaneo, fino a trovare nella nostra esistenza le stesse passioni e le stesse ossessioni cantate dagli antichi aedi.`,
-    image: "/images/spettacolo-placeholder.svg",
+    image: "/images/ls_odisseajukebox.webp",
   },
   {
     id: "se-giasone-fosse-rimasto-single",
@@ -57,7 +57,7 @@ Analizzando il capolavoro di William Shakespeare, la lezione-spettacolo, in cui 
     description: `Lezione-spettacolo sulle discese nell'Abisso
 
 Lo spettacolo intreccia le narrazioni di tre storie mitologiche provenienti da tre bacini folklorici differenti: quello ellenico, quello celtico e quello marchigiano. Si snoda così un racconto che, attorno al tema del viaggio tra i morti, tocca il mito greco di Orfeo, la leggenda delle magiche fanciulle-foca delle isole dei mari del nord dette Selkie, e una fiaba del focolare della tradizione fermano-maceratese narrata in versi. La lezione-spettacolo si svolge alternando letture sceniche e uno storytelling originale in cui si alternano approfondimenti filosofici e letterari e momenti di stand-up comedy`,
-    image: "/images/spettacolo-placeholder.svg",
+    image: "/images/ls_orfeo.webp",
   },
   {
     id: "fate-caprine-cavalieri-erranti",
@@ -82,7 +82,7 @@ Lo spettacolo racconta in modo alternativo la vita e l’opera del poeta Giacomo
     description: `Lezione-spettacolo su Medusa e il concetto di coscienza
 
 Lo spettacolo narra il mito di Perseo e la sua caccia a Medusa, evocandone il profondo portato metaforico nel rapporto tra l'idea di coscienza soggettiva e i suoi terrori più originari. Seguendo il viaggio dell'eroe compiuto da Perseo, gli spettatori incontrano l'antico mito greco per scorgerne i significati filosofici e psicologici profondamente vivi nel mondo contemporaneo. Mescolando i linguaggi del teatro di narrazione e della stand-up comedy, il monologo propone una lettura vibrante e affascinante di un'antica storia, sempre nuova.`,
-    image: "/images/spettacolo-placeholder.svg",
+    image: "/images/ls_seseiperseo.webp",
   },
   {
     id: "il-labirinto-e-l-abbandono",
@@ -132,7 +132,7 @@ Descrizione in arrivo. Contattaci per maggiori informazioni su questo spettacolo
     description: `Lezione-spettacolo sui re matti shakespeariani
 
 Il teatro di William Shakespeare tocca centralmente il tema del valore ieratico della regalità, che ebbe la sua più piena definizione e si incarnò, storicamente, in vari sovrani. Shakespeare descrisse profondamente il carattere e le vicende di vari regnanti, da Riccardo II a Enrico V, da MacBeth a Riccardo III. Lo spettacolo ripercorre la vicende raccontate da Shakespeare e si sofferma sul senso stesso della regalità sacra, proponendo una serie di parallelismi tra i Re shakespeariani e specifiche sindromi psicologiche, nonché un percorso storico atto a sottolineare i legami profondi tra l'epoca medievale e quella moderna. Mescolando il teatro di narrazione e l’ironia della stand-up comedy, lo spettacolo si struttura attraverso una serie di letture sceniche che si alternano a musiche originali realizzate dal vivo da due musicisti, e a uno storytelling che guida il pubblico nelle riflessioni svolte e nelle vicende narrate.`,
-    image: "/images/spettacolo-placeholder.svg",
+    image: "/images/ls_lavuotacorona.webp",
   },
   {
     id: "le-streghe-e-il-destino",
@@ -140,7 +140,7 @@ Il teatro di William Shakespeare tocca centralmente il tema del valore ieratico 
     description: `lezione spettacolo sul Macbeth
 
 Descrizione in arrivo. Contattaci per maggiori informazioni su questo spettacolo.`,
-    image: "/images/spettacolo-placeholder.svg",
+    image: "/images/ls_stregheedestino.webp",
   },
   {
     id: "tue-so-le-laudi",
@@ -172,7 +172,7 @@ La lezione-spettacolo racconta la vita e l'opera di Oscar Wilde soffermandosi, i
     description: `Lezione-spettacolo su WB Yeats e i miti d'Irlanda
 
 Lo spettacolo propone un viaggio ideale e magico attraverso le fiabe e la storia d’Irlanda, con particolare attenzione alla vicenda della sua indipendenza; il tutto, attraverso gli occhi delle donne che hanno amato e stimato il poeta più celebre e controverso dell’Isola, il bardo visionario W.B. Yeats. Un viaggio ideale nei luoghi più affascinati e magici della terra d’Irlanda, in una sorta di esplorazione letteraria di questa nazione, della sua magia e della sua storia. Per la durata lo spettacolo si è magicamente trasportati tra la gente e i paesaggi incantati d’Irlanda, tra pinte di birra scura, folletti chiamati Leprechaun, fate e trifogli magici. Musiche originali dal vivo della tradizione irlandese, con strumenti etnici, accompagno lo storytelling e la recitazione`,
-    image: "/images/spettacolo-placeholder.svg",
+    image: "/images/ls_irlandaevitainvisibile.webp",
   },
   {
     id: "la-musa-nel-bicchiere",
@@ -180,7 +180,7 @@ Lo spettacolo propone un viaggio ideale e magico attraverso le fiabe e la storia
     description: `Lezione-spettacolo su 3 scrittori americani e i loro cocktail.
 
 Lo spettacolo racconta le vite le opere di cinque scrittori americani del XX secolo e la loro passione, talvolta fatale, per i cocktail. Il famoso Daiquiri di Hemingway; il Gin Rickey di F.S. Fitzgerald; il Ramos Fizz adorato da Tennesse Williams; il Martini Cocktail sorseggiato da Anne Sexton; il Mint Julep amato da Faulker, celano le storie dietro ai grandi libri di questi autori. Gli spettatori sono condotti in una sorta di viaggio eno-letterario tra le strade e la cultura d'America, in un alternarsi di narrazioni originali e letture sceniche, in un incontro di registri differenti in cui si mescolano la critica, il teatro di narrazione e la stand-up comedy. Accompagna la lezione-spettacolo una colonna sonora dal vivo, ispirata ai più grandi successi di Joni Mitchell rivisitati in un arrangiamento originale.`,
-    image: "/images/spettacolo-placeholder.svg",
+    image: "/images/ls_lamusanelbicchiere.webp",
   },
   {
     id: "rien-de-rien",
@@ -205,7 +205,7 @@ Attraverso un racconto della vita della sua autrice, Mary Shelley, e del grande 
     description: `Lezione-spettacolo su Veronica Franco
 
 Lo spettacolo racconta la storia della vita di Veronica Franco, poetessa e cortigiana nella Venezia del Cinquecento. Forse la poetessa più complessa e profonda del suo tempo, esercitò inoltre il mestiere di cortigiana divenendo celeberrima in tutta Europa. La vicenda di Veronica è quella, a tratti scabrosa, di una donna quanto mai moderna, che sacrifica ogni cosa in nome della sua indipendenza, del suo talento e della sua libertà. Lo spettacolo vede alternarsi interventi critici, letture sceniche, momenti di recitazione, e le musiche originali di Fabio Capponi al pianoforte-tastiera. Uno storytelling originale, in cui la divulgazione filosofica si mescola all’ironia del cabaret, accompagna lo spettatore alla scoperta della figura di Veronica Franco: scrittrice e intellettuale a lungo sottovalutata, ma tra gli autori più interessanti della Rinascimento; donna che lottò, in nome della propria indipendenza e libertà, contro i pregiudizi e le prevaricazioni sociali della sua società.`,
-    image: "/images/spettacolo-placeholder.svg",
+    image: "/images/ls_lagenialecortigiana.webp",
   },
   {
     id: "in-terribile-stato",

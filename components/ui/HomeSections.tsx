@@ -85,7 +85,7 @@ export default function HomeSections() {
               tra incanto e ironia.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Button href="/lezioni-spettacolo">Tutti gli eventi</Button>
+              <Button href="/lezioni-spettacolo">Repertorio spettacoli</Button>
               <Button
                 href="/calendario"
                 variant="secondary"
