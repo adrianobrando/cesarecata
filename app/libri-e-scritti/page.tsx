@@ -8,7 +8,10 @@ const curatele = [
   "H.D. Thoreau, Una passeggiata d'inverno (Il Nuovo Melangolo, 2013)",
   "Per sempre Romantici. Antologia della poesia inglese e tedesca ad uso di spiriti ribelli (Liberilibri, 2022)",
   "Libertini libertine. Avventure e filosofie del libero amore da Lord Byron a George Best (Liberilibri, 2018)",
-  "A caccia dell'Infinito. L'Umano e il Divino nell'opera di Nicola Cusano (Aracne, 2010)",
+  {
+    text: "A caccia dell'Infinito. L'Umano e il Divino nell'opera di Nicola Cusano (Aracne, 2010)",
+    href: "https://www.amazon.it/dp/8854836885",
+  },
   "Gottfried W. Leibniz, Consilium Aegyptiacum. (Il Cerchio, 2011)",
 ];
 
@@ -63,19 +66,35 @@ const libriRecenti = [...libri].sort(
 
 type PublicationSectionProps = {
   title: string;
-  items: string[];
+  items: Array<string | { text: string; href: string }>;
   visibleCount: number;
 };
 
 function PublicationSection({ title, items, visibleCount }: PublicationSectionProps) {
   const visibleItems = items.slice(0, visibleCount);
   const hiddenItems = items.slice(visibleCount);
+  const renderItem = (item: string | { text: string; href: string }) => {
+    if (typeof item === "string") return item;
+
+    return (
+      <a
+        href={item.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-primary-blue underline underline-offset-2"
+      >
+        {item.text}
+      </a>
+    );
+  };
 
   return (
     <article className="flex h-full flex-col bg-white p-6 sm:p-8">
       <h2 className="font-display text-3xl font-normal text-dark-blue">{title}</h2>
       <ol className="mt-5 list-decimal space-y-3 pl-5 text-slate-700">
-        {visibleItems.map((item) => <li key={item}>{item}</li>)}
+        {visibleItems.map((item) => (
+          <li key={typeof item === "string" ? item : item.text}>{renderItem(item)}</li>
+        ))}
       </ol>
       {hiddenItems.length > 0 && (
         <details className="mt-3">
@@ -83,7 +102,9 @@ function PublicationSection({ title, items, visibleCount }: PublicationSectionPr
             Leggi di più
           </summary>
           <ol start={visibleCount + 1} className="list-decimal space-y-3 pl-5 text-slate-700">
-            {hiddenItems.map((item) => <li key={item}>{item}</li>)}
+            {hiddenItems.map((item) => (
+              <li key={typeof item === "string" ? item : item.text}>{renderItem(item)}</li>
+            ))}
           </ol>
         </details>
       )}

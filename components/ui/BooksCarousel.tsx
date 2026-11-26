@@ -111,7 +111,12 @@ export default function BooksCarousel({ books }: { books: Libro[] }) {
                   <div className="mt-2 w-full">
                     <ExpandableText text={libro.description} />
                   </div>
-                  <Button href={libro.href} className="mt-2 px-4 py-2 text-sm">
+                  <Button
+                    href={libro.href}
+                    target={libro.href === "#" ? undefined : "_blank"}
+                    rel={libro.href === "#" ? undefined : "noopener noreferrer"}
+                    className="mt-2 px-4 py-2 text-sm"
+                  >
                     Acquista<span className="sr-only">: {libro.title}</span>
                   </Button>
                 </div>
