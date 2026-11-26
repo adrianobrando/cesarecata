@@ -9,7 +9,7 @@ test("l'archivio conserva tutti i testi, incluso lo spettacolo non numerato", as
   const normalize = (text) => text.replace(/\s+/g, " ").trim();
   const placeholder = "Descrizione in arrivo. Contattaci per maggiori informazioni su questo spettacolo.";
   const missing = new Set([13, 15, 25, 26, 27, 28]);
-  assert.equal(spettacoli.length, 29);
+  assert.equal(spettacoli.length, 30);
   assert.equal(entries.length, spettacoli.length);
   assert.equal(new Set(spettacoli.map((show) => show.id)).size, spettacoli.length);
   spettacoli.forEach((show, index) => {
@@ -47,6 +47,7 @@ test("le immagini disponibili sono associate agli spettacoli corretti", async ()
     "rien-de-rien": "ls_rienderien.webp",
     "la-geniale-cortigiana": "ls_lagenialecortigiana.webp",
     "in-terribile-stato": "ls_interribilestato.webp",
+    "io-dico-dio-tutto-infinito": "ls_iodicodiotuttoinfinito.webp",
   };
   for (const show of spettacoli) {
     const expected = images[show.id] ?? "spettacolo-placeholder.svg";

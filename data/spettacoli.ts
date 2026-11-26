@@ -216,6 +216,14 @@ Lo spettacolo racconta la vita e l'opera di Pier Paolo Pasolini, intrecciando un
     image: "/images/ls_interribilestato.webp",
   },
   {
+    id: "io-dico-dio-tutto-infinito",
+    title: "Io Dico Dio Tutto Infinito",
+    description: `Lezione-spettacolo su Giordano Bruno
+
+Lo spettacolo racconta la vita avventurosa e l'affascinante filosofia di Giordano Bruno, soffermandosi in particolare sul concetto di infinito e sulle accuse di eresia che portarono, infine, il filosofo a morire sul rogo a Roma il 17 Febbraio del 1600. Alternando storytelling, letture sceniche, divagazioni filosofiche e spunti in stile stand-up comedy, la lezione-spettacolo accompagna gli spettatori verso un viaggio commovente e spirituale nel pensiero e nella biografia bruniani. La messa in scena è impreziosita da acrobazie e spettacoli col fuoco, che si intrecciano alla narrazione sul piano estetico e concettuale, con grande effetto scenico.`,
+    image: "/images/ls_iodicodiotuttoinfinito.webp",
+  },
+  {
     id: "lezione-spettacolo-su-heidegger-e-il-nazismo-esoterico",
     title: "Lezione-spettacolo su Heidegger e il Nazismo esoterico",
     description: `Descrizione in arrivo. Contattaci per maggiori informazioni su questo spettacolo.`,
