@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { libri } from "@/data/libri";
 import Button from "./Button";
 
 const programs = [
@@ -100,7 +101,7 @@ export default function HomeSections() {
 
       <section
         aria-label="Corsi e viaggi letterari"
-        className="site-container grid gap-8 pb-20 pt-8 sm:pb-28 sm:pt-10 lg:grid-cols-2"
+        className="site-container grid gap-8 pb-4 pt-8 sm:pb-6 sm:pt-10 lg:grid-cols-2"
       >
         {programs.map(({ title, image, href, description }) => (
           <article
@@ -133,6 +134,37 @@ export default function HomeSections() {
             </div>
           </article>
         ))}
+      </section>
+
+      <section aria-labelledby="home-books-title" className="site-container pb-20 pt-4 sm:pb-28 sm:pt-6">
+        <div className="relative min-h-[32rem] overflow-hidden rounded-2xl bg-dark-blue sm:min-h-[36rem]">
+          <div aria-hidden="true" className="absolute inset-0 grid grid-cols-3 sm:grid-cols-5">
+            {libri.slice(0, 5).map((libro, index) => (
+              <div key={libro.id} className={`relative ${index >= 3 ? "hidden sm:block" : ""}`}>
+                <Image
+                  src={libro.image}
+                  alt=""
+                  fill
+                  sizes="(min-width: 640px) 20vw, 33vw"
+                  className="rounded-none object-cover"
+                />
+              </div>
+            ))}
+          </div>
+          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-dark-blue via-dark-blue/90 to-dark-blue/50" />
+          <div className="relative mx-auto flex min-h-[32rem] max-w-4xl flex-col items-center justify-end px-6 pb-12 pt-16 text-center text-white sm:min-h-[36rem]">
+            <h2 id="home-books-title" className="font-display text-4xl font-normal sm:text-5xl">
+              Libri e Scritti
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed sm:text-xl">
+              Tra filosofia, letteratura e miti, libri e scritti diventano un invito a esplorare
+              storie, idee e mondi incantati.
+            </p>
+            <Button href="/libri-e-scritti" className="mt-8">
+              Scopri libri e scritti
+            </Button>
+          </div>
+        </div>
       </section>
     </>
   );

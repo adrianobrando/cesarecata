@@ -46,6 +46,7 @@ test("le immagini disponibili sono associate agli spettacoli corretti", async ()
     "la-musa-nel-bicchiere": "ls_lamusanelbicchiere.webp",
     "rien-de-rien": "ls_rienderien.webp",
     "la-geniale-cortigiana": "ls_lagenialecortigiana.webp",
+    "in-terribile-stato": "ls_interribilestato.webp",
   };
   for (const show of spettacoli) {
     const expected = images[show.id] ?? "spettacolo-placeholder.svg";

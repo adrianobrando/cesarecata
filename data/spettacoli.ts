@@ -213,7 +213,7 @@ Lo spettacolo racconta la storia della vita di Veronica Franco, poetessa e corti
     description: `Lezione-spettacolo su Pier Paolo Pasolini
 
 Lo spettacolo racconta la vita e l'opera di Pier Paolo Pasolini, intrecciando uno storytelling originale, letture sceniche dei testi del poeta, testi di interviste rilasciati da Pasolini stesso nel corso della sua vita, esecuzioni dal vivo di canzoni folk italiane. L'esplorazione dell'opera pasoliniana diventa un viaggio nella coscienza civile e sociale dell'Italia e nelle sue tragiche crepe. Particolare importanza assume, nel racconto, il rapporto tra il poeta e sua madre Susanna, narrato al pubblico nel suo cruciale significato all'interno del percorso pasoliniano tra cinema e letteratura.`,
-    image: "/images/spettacolo-placeholder.svg",
+    image: "/images/ls_interribilestato.webp",
   },
   {
     id: "lezione-spettacolo-su-heidegger-e-il-nazismo-esoterico",
